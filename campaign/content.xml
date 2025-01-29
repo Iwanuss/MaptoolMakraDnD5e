@@ -1,0 +1,452 @@
+<list>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>85a54602-4182-49d9-bc4d-b2d632b06316</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>1</index>
+    <colorKey>navy</colorKey>
+    <hotKey>None</hotKey>
+    <command>[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>Karta Postaci</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>white</fontColorKey>
+    <fontSize>1.25em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>f61f9472-9b3f-4cfa-99cb-65e71a466a8a</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>2</index>
+    <colorKey>orange</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;pula|1|Ilosc kosci|&quot;,
+	&quot;modyfikator|0|Modyfikator|&quot;
+)]
+[h:suma=0]
+[r,COUNT(pula,&quot; &quot;),CODE: {
+	[h:rzut=1d4]
+	[h:suma=suma+rzut]
+	&lt;image src=&apos;[r:test=tableImage(&quot;D4&quot;, rzut)]&apos;&gt;&lt;/image&gt;
+}]
+[h:final=suma+modyfikator]
+&lt;br&gt;
+[r: &quot;Rzut z pula &quot; +pula +&quot; kosci&quot;] &lt;br /&gt;
+Suma na kosciach: [r:suma] &lt;br /&gt;
+[r,if(modyfikator!=0):&quot;Modyfikator: &quot;+modyfikator+&quot;&lt;br /&gt;Suma: &quot;+final]</command>
+    <label>Rzut K4</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>black</fontColorKey>
+    <fontSize>1.05em</fontSize>
+    <minWidth>80</minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>c941467f-f5b7-44d8-8f2f-5345c721b779</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>3</index>
+    <colorKey>orange</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;pula|1|Ilosc kosci|&quot;,
+	&quot;modyfikator|0|Modyfikator|&quot;
+)]
+[h:suma=0]
+[r,COUNT(pula,&quot; &quot;),CODE: {
+	[h:rzut=1d6]
+	[h:suma=suma+rzut]
+	&lt;image src=&apos;[r:test=tableImage(&quot;D6&quot;, rzut)]&apos;&gt;&lt;/image&gt;
+}]
+[h:final=suma+modyfikator]
+&lt;br&gt;
+[r: &quot;Rzut z pula &quot; +pula +&quot; kosci&quot;] &lt;br /&gt;
+Suma na kosciach: [r:suma] &lt;br /&gt;
+[r,if(modyfikator!=0):&quot;Modyfikator: &quot;+modyfikator+&quot;&lt;br /&gt;Suma: &quot;+final]</command>
+    <label>Rzut K6</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>black</fontColorKey>
+    <fontSize>1.05em</fontSize>
+    <minWidth>80</minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>f07b445e-605d-42fc-a3ad-eb963e140b75</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>4</index>
+    <colorKey>orange</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;pula|1|Ilosc kosci|&quot;,
+	&quot;modyfikator|0|Modyfikator|&quot;
+)]
+[h:suma=0]
+[r,COUNT(pula,&quot; &quot;),CODE: {
+	[h:rzut=1d8]
+	[h:suma=suma+rzut]
+	&lt;image src=&apos;[r:test=tableImage(&quot;D8&quot;, rzut)]&apos;&gt;&lt;/image&gt;
+}]
+[h:final=suma+modyfikator]
+&lt;br&gt;
+[r: &quot;Rzut z pula &quot; +pula +&quot; kosci&quot;] &lt;br /&gt;
+Suma na kosciach: [r:suma] &lt;br /&gt;
+[r,if(modyfikator!=0):&quot;Modyfikator: &quot;+modyfikator+&quot;&lt;br /&gt;Suma: &quot;+final]</command>
+    <label>Rzut K8</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>black</fontColorKey>
+    <fontSize>1.05em</fontSize>
+    <minWidth>80</minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>c878e7f4-ee2b-4b16-a595-82eafba7e340</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>5</index>
+    <colorKey>orange</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;pula|1|Ilosc kosci|&quot;,
+	&quot;modyfikator|0|Modyfikator|&quot;
+)]
+[h:suma=0]
+[r,COUNT(pula,&quot; &quot;),CODE: {
+	[h:rzut=1d10]
+	[h:suma=suma+rzut]
+	&lt;image src=&apos;[r:test=tableImage(&quot;D10&quot;, rzut)]&apos;&gt;&lt;/image&gt;
+}]
+[h:final=suma+modyfikator]
+&lt;br&gt;
+[r: &quot;Rzut z pula &quot; +pula +&quot; kosci&quot;] &lt;br /&gt;
+Suma na kosciach: [r:suma] &lt;br /&gt;
+[r,if(modyfikator!=0):&quot;Modyfikator: &quot;+modyfikator+&quot;&lt;br /&gt;Suma: &quot;+final]</command>
+    <label>Rzut K10</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>black</fontColorKey>
+    <fontSize>1.05em</fontSize>
+    <minWidth>80</minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>69e5853a-7604-423d-97c0-8cefb30ba8f3</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>6</index>
+    <colorKey>orange</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;pula|1|Ilosc kosci|&quot;,
+	&quot;modyfikator|0|Modyfikator|&quot;
+)]
+[h:suma=0]
+[r,COUNT(pula,&quot; &quot;),CODE: {
+	[h:rzut=1d12]
+	[h:suma=suma+rzut]
+	&lt;image src=&apos;[r:test=tableImage(&quot;D12&quot;, rzut)]&apos;&gt;&lt;/image&gt;
+}]
+[h:final=suma+modyfikator]
+&lt;br&gt;
+[r: &quot;Rzut z pula &quot; +pula +&quot; kosci&quot;] &lt;br /&gt;
+Suma na kosciach: [r:suma] &lt;br /&gt;
+[r,if(modyfikator!=0):&quot;Modyfikator: &quot;+modyfikator+&quot;&lt;br /&gt;Suma: &quot;+final]</command>
+    <label>Rzut K12</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>black</fontColorKey>
+    <fontSize>1.05em</fontSize>
+    <minWidth>80</minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>7b19a345-cb69-4b04-883a-5d655d5694c1</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>7</index>
+    <colorKey>black</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;pula|1|Ilosc kosci|&quot;,
+	&quot;modyfikator|0|Modyfikator|&quot;
+)]
+[h:suma=0]
+[r,COUNT(pula,&quot; &quot;),CODE: {
+	[h:rzut=1d20]
+	[h:suma=suma+rzut]
+	&lt;image src=&apos;[r:test=tableImage(&quot;D20&quot;, rzut)]&apos;&gt;&lt;/image&gt;
+}]
+[h:final=suma+modyfikator]
+&lt;br&gt;
+[r: &quot;Rzut z pula &quot; +pula +&quot; kosci&quot;] &lt;br /&gt;
+Suma na kosciach: [r:suma] &lt;br /&gt;
+[r,if(modyfikator!=0):&quot;Modyfikator: &quot;+modyfikator+&quot;&lt;br /&gt;Suma: &quot;+final]</command>
+    <label>Rzut K20</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>yellow</fontColorKey>
+    <fontSize>1.20em</fontSize>
+    <minWidth>80</minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>75a90bb0-dd7a-4a62-b5a9-21ae765307f7</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>8</index>
+    <colorKey>black</colorKey>
+    <hotKey>None</hotKey>
+    <command>&lt;image src=&apos;[r:test=tableImage(&quot;D10&quot;)]&apos;&gt;&lt;/image&gt;&lt;image src=&apos;[r:test=tableImage(&quot;D10&quot;)]&apos;&gt;&lt;/image&gt;</command>
+    <label>Rzut K100</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>yellow</fontColorKey>
+    <fontSize>1.20em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>c8e328e9-1bbd-4857-9ad8-0cdf85571048</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>9</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;PoraRoku|Żadna, Wiosna, Lato, Jesień, Zima|Which picture|RADIO|SELECT=&quot;+PoraRoku
+)]
+
+[h,switch(PoraRoku):
+	case 0: token.halo = &quot;None&quot;;
+	case 1: token.halo = &quot;green&quot;;
+	case 2: token.halo = &quot;yellow&quot;;
+	case 3: token.halo = &quot;red&quot;;
+	case 4: token.halo = &quot;white&quot;;
+	default: token.halo = &quot;None&quot;
+]</command>
+    <label>Pora roku</label>
+    <group>Inne</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>9d53134e-1ea3-4ef4-bf0f-0879e5ffa771</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>11</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h:class=1]
+[frame(&quot;Przeszkody&quot;):{
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;CharSheet_css@Lib:papaj&quot;&gt;
+    &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Przeszkoda&lt;/th&gt;&lt;th&gt;Kolor obramowania&lt;/th&gt;&lt;th&gt;Kolor wypełnienia&lt;/th&gt;&lt;th&gt;Czy można wejść?&lt;/th&gt;&lt;th&gt;Podwójny ruch&lt;/th&gt;&lt;th&gt;Blokuje widoczność&lt;/th&gt;&lt;th&gt;Efekt&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Lekka osłona&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Zielony&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Zielony&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Wymaga wspinaczki&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Pojedynczy&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Nie blokuje&lt;/td&gt;&lt;td&gt;Cel znajdujący się za osłoną otrzymuje +2 do AC oraz rzutów obronnych na Zręczność&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Ciężka osłona&lt;/td&gt;&lt;td style=&quot;background-color: yellow;&quot;&gt;Zółty&lt;/td&gt;&lt;td style=&quot;background-color: yellow;&quot;&gt;Żółty&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Wymaga wspinaczki&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Pojedynczy&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Nie blokuje&lt;/td&gt;&lt;td&gt;Cel znajdujący się za osłoną otrzymuje +5 do AC oraz rzutów obronnych na Zręczność&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Całkowita osłona&lt;/td&gt;&lt;td style=&quot;background-color: black;&quot;&gt;Czarny&lt;/td&gt;&lt;td style=&quot;background-color: black;&quot;&gt;Czarny&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Wymaga wspinaczki&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Pojedynczy&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Blokuje&lt;/td&gt;&lt;td&gt;Cel znajdujący się za osłoną jest niewidoczny&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Pagórek&lt;/td&gt;&lt;td style=&quot;background-color: #ee82ee;&quot;&gt;Fioletowy&lt;/td&gt;&lt;td style=&quot;background-color: #ee82ee;&quot;&gt;Fioletowy&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Można&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Podwójny&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Blokuje&lt;/td&gt;&lt;td&gt;Postać stojąca na wzniesieniu ignoruje wszystkie osłony terenowe przy ustalaniu widoczności oraz są one ignorowane przeciwko tej postaci; Zapewnia modyfikatory do walki w zwarciu związane z różnicą wysokości&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Cięzki teren&lt;/td&gt;&lt;td style=&quot;background-color: #00ffff;&quot;&gt;Cyjanowy&lt;/td&gt;&lt;td style=&quot;background-color: #00ffff;&quot;&gt;Cyjanowy&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Można&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Podwójny&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Nie blokuje&lt;/td&gt;&lt;td&gt;Ataki w zwarciu przeciwko postaci w ciężkim terenie są wykonywane z ułatwieniem; Ataki w zwarciu postaci znajdującej się w ciężkim terenie są wykonywane z utrudnieniem&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Podwyższenie&lt;/td&gt;&lt;td style=&quot;background-color: #ee82ee;&quot;&gt;Fioletowy&lt;/td&gt;&lt;td style=&quot;background-color: black;&quot;&gt;Czarny&lt;/td&gt;&lt;td style=&quot;background-color: #9acd32;&quot;&gt;Można z pagórka lub przy pomocy wspinaczki&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Pojedynczy&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Blokuje&lt;/td&gt;&lt;td&gt;Wyższy od pagórka (minimum 15 stóp), można na niego wejść jedynie z pagórka lub przy pomocy wspionaczki; Postać stojąca na wzniesieniu ignoruje wszystkie osłony terenowe przy ustalaniu widoczności oraz są one ignorowane przeciwko tej postaci; Zapewnia modyfikatory do walki w zwarciu związane z różnicą wysokości&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Krzaki&lt;/td&gt;&lt;td style=&quot;background-color: #006400;&quot;&gt;Ciemnozielony&lt;/td&gt;&lt;td style=&quot;background-color: #006400;&quot;&gt;Ciemnozielony&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Można&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Podwójny&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Nie blokuje&lt;/td&gt;&lt;td&gt;Cel znajdujący się za lub w osłonie otrzymuje +2 do AC oraz rzutów obronnych na Zręczność&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Lawa / ogień&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Czerwony&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Czerwony&lt;/td&gt;&lt;td style=&quot;background-color: #9acd32;&quot;&gt;Można, choć nie polecam&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Pojedynczy&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Nie blokuje&lt;/td&gt;&lt;td&gt;Postać, która znajdzie się w płomieniach po raz pierwszy w rundzie otrzymuje 10d10 obrażeń od ognia&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Przepaść&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Czerwony&lt;/td&gt;&lt;td style=&quot;background-color: black;&quot;&gt;Czarny&lt;/td&gt;&lt;td style=&quot;background-color: #9acd32;&quot;&gt;Można, choć nie polecam&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Pojedynczy, w dół&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Nie blokuje&lt;/td&gt;&lt;td&gt;Otwór powstały wskutek uszkodzenia, miejscowość biedna, położona z dala od cywilizacji&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Tryby&lt;/td&gt;&lt;td style=&quot;background-color: #f5f5dc;&quot;&gt;Beżowy&lt;/td&gt;&lt;td style=&quot;background-color: #f5f5dc;&quot;&gt;Beżowy&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Można&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Pojedynczy&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Nie blokuje&lt;/td&gt;&lt;td&gt;Postać, która znajdzie się na trybie na koniec rundy, kolejną zacznie po jego przeciwległej stronie, nie wywołując żadnych ataków okazyjnych&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Woda&lt;/td&gt;&lt;td style=&quot;background-color: blue;&quot;&gt;Niebieski&lt;/td&gt;&lt;td style=&quot;background-color: blue;&quot;&gt;Niebieski&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Można&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Podwójny lub wykorzystujący prędkość pływania&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Nie blokuje&lt;/td&gt;&lt;td&gt;Stosują się zasady pływania&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Ruchome piaski&lt;/td&gt;&lt;td style=&quot;background-color: black;&quot;&gt;Czarny&lt;/td&gt;&lt;td style=&quot;background-color: #8a918a;&quot;&gt;Szary&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Można&lt;/td&gt;&lt;td style=&quot;background-color: red;&quot;&gt;Podwójny&lt;/td&gt;&lt;td style=&quot;background-color: green;&quot;&gt;Nie blokuje&lt;/td&gt;&lt;td&gt;Wypatrzenie ruchomych piasków wymaga testu Sztuki Przetrwania DC 10. Postać, która wejdzie w ruchome piaski musi wykonać rzut obronny Siły DC 15 lub zostaje unieruchomiona. Unieruchomiona postać może powtarzać ten rzut obronny na koniec swojej tury. Postać, która spędzi unieruchomiona w piaskach 3 tury zostaje przez nie wchłonięta i zaczyna się dusić.&lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+}]</command>
+    <label>Przeszkody</label>
+    <group>Inne</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>c9f7b72d-35ef-4c3b-8443-fb19c4b145f7</macroUUID>
+    <saveLocation>CampaignPanel</saveLocation>
+    <index>10</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h:class=1]
+[frame(&quot;Legenda&quot;):{
+	&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;CharSheet_css@Lib:papaj&quot;&gt;
+	&lt;table class=&quot;Statusy&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Symbol&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Opis&lt;/th&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 1, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Stunned&lt;/td&gt;&lt;td&gt;&quot;A stunned creature is incapacitated, can&apos;t move, and can speak only falteringly. The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.&quot;&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 2, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Restrained&lt;/td&gt;&lt;td&gt;&quot;A restrained creature&apos;s speed becomes 0, and it can&apos;t benefit from any bonus to its speed. Attack rolls against the creature have advantage, and the creature&apos;s attack rolls have disadvantage. The creature has disadvantage on Dexterity saving throws.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 3, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Prone&lt;/td&gt;&lt;td&gt;&quot;A prone creature&apos;s only movement option is to crawl, unless it stands up and thereby ends the condition. The creature has disadvantage on attack rolls. An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 4, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Poisoned&lt;/td&gt;&lt;td&gt;&quot;A poisoned creature has disadvantage on attack rolls and ability checks.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 5, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Petrified&lt;/td&gt;&lt;td&gt;&quot;A petrified creature is transformed, along with any nonmagical object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging. The creature is incapacitated, can&apos;t move or speak, and is unaware of its surroundings. Attack rolls against the creature have advantage. The creature automatically fails Strength and Dexterity saving throws. The creature has resistance to all damage. The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 6, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Paralyzed&lt;/td&gt;&lt;td&gt;&quot;A paralyzed creature is incapacitated and can&apos;t move or speak. The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage. Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 7, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Invisible&lt;/td&gt;&lt;td&gt;&quot;An invisible creature is impossible to see without the aid of magic or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature&apos;s location can be detected by any noise it makes or any tracks it leaves. Attack rolls against the creature have disadvantage, and the creature&apos;s attack rolls have advantage.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 8, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Unconscious&lt;/td&gt;&lt;td&gt;&quot;An unconscious creature is incapacitated, can&apos;t move or speak, and is unaware of its surroundings. he creature drops whatever it&apos;s holding and falls prone. The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage. Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 9, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Incapacitated&lt;/td&gt;&lt;td&gt;&quot;An incapacitated creature can&apos;t take actions or reactions.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 10, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Grappled&lt;/td&gt;&lt;td&gt;&quot;A grappled creature&apos;s speed becomes 0, and it can&apos;t benefit from any bonus to its speed. The condition ends if the grappler is incapacitated. The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect, such as when a creature is hurled away by the thunderwave spell.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 11, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Frightened&lt;/td&gt;&lt;td&gt;&quot;A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight. The creature can&apos;t willingly move closer to the source of its fear.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 12, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Deafened&lt;/td&gt;&lt;td&gt;&quot;A deafened creature can&apos;t hear and automatically fails any ability check that requires hearing.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 13, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Charmed&lt;/td&gt;&lt;td&gt;&quot;A charmed creature can&apos;t attack the charmer or target the charmer with harmful abilities or magical effects. The charmer has advantage on any ability check to interact socially with the creature.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 14, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Blinded&lt;/td&gt;&lt;td&gt;&quot;A blinded creature can&apos;t see and automatically fails any ability check that requires sight. Attack rolls against the creature have advantage, and the creature&apos;s attack rolls have disadvantage.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 15, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Rzut obronny przeciwko śmierci: 1-wszy sukces&lt;/td&gt;&lt;td&gt;&quot;Postaci powiódł się pierwszy rzut obronny przeciwko śmierci. Kolejne dwa sukcesy oznaczają jej ustabilizowanie.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 16, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Rzut obronny przeciwko śmierci: 2-gi sukces&lt;/td&gt;&lt;td&gt;&quot;Postaci powiódł się drugi rzut obronny przeciwko śmierci. Kolejny sukces oznacza jej ustabilizowanie.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 17, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Rzut obronny przeciwko śmierci: 1-wsza porażka&lt;/td&gt;&lt;td&gt;&quot;Postaci nie powiódł się pierwszy rzut obronny przeciwko śmierci. Kolejne dwie porażki oznaczają jej zgon.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 18, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Rzut obronny przeciwko śmierci: 2-ga porażka&lt;/td&gt;&lt;td&gt;&quot;Postaci nie powiódł się 2-gi rzut obronny przeciwko śmierci. Kolejna porażka oznacza jej zgon.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 19, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Bardic Inspiration&lt;/td&gt;&lt;td&gt;&quot;Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the DM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time. The die is a d6 and becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 20, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Dodge&lt;/td&gt;&lt;td&gt;&quot;When you take the Dodge action, you focus entirely on avoiding attacks. Until the start of your next turn, any attack roll made against you has disadvantage if you can see the attacker, and you make Dexterity saving throws with advantage. You lose this benefit if you are incapacitated (as explained in the appendix) or if your speed drops to 0.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 21, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Inspiration&lt;/td&gt;&lt;td&gt;&quot;If you have inspiration, you can expend it when you make an attack roll, saving throw, or ability check. Spending your inspiration gives you a reroll.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 22, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Concentration&lt;/td&gt;&lt;td&gt;&quot;Some spells require you to maintain concentration in order to keep their magic active. If you lose concentration, such a spell ends. If a spell must be maintained with concentration, that fact appears in its Duration entry, and the spell specifies how long you can concentrate on it. You can end concentration at any time (no action required). Normal activity, such as moving and attacking, doesn&apos;t interfere with concentration. The following factors can break concentration: Casting another spell that requires concentration. You lose concentration on a spell if you cast another spell that requires concentration. You can&apos;t concentrate on two spells at once. Taking damage. Whenever you take damage while you are concentrating on a spell, you must make a Constitution saving throw to maintain your concentration. The DC equals 10 or half the damage you take, whichever number is higher. If you take damage from multiple sources, such as an arrow and a dragon&apos;s breath, you make a separate saving throw for each source of damage. Being incapacitated or killed. You lose concentration on a spell if you are incapacitated or if you die.&quot;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;&lt;image src=&apos;[r: tableImage(&quot;Status&quot;, 23, 50)]&apos;&gt;&lt;/td&gt;&lt;td&gt;Zeszkalowany&lt;/td&gt;&lt;td&gt;&quot;Osoba zeszkalowana wykonuje kolejny test ataku z utrudnieniem.&quot;&lt;/td&gt;&lt;/tr&gt;
+	&lt;/table&gt;
+}]</command>
+    <label>Statusy</label>
+    <group>Inne</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+</list>

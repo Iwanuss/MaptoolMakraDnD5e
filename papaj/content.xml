@@ -1,0 +1,2412 @@
+<list>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>1a415b02-7a26-4932-a93b-fb82d9d6088a</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>1</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>&lt;font color=CCCCCC bgcolor=black&gt;
+[h: name = getStrProp(macro.args, &quot;name&quot;)]
+[h: value = getStrProp(macro.args, &quot;value&quot;)]
+
+[h:modifier=getProperty(name+&quot;Mod&quot;)]
+[h:modifier=value]
+&lt;h1&gt;[r:name]&lt;/h1&gt;
+&lt;h1&gt;Rzut: [r:roll=1d20]&lt;/h1&gt;
+&lt;h1&gt;Wynik: [r:roll+modifier]&lt;/h1&gt;
+&lt;/font&gt;
+
+[h,if(roll &gt;= Kryt), code:{
+	[H: audioByte = macroLinkText(&quot;luck@Lib:papaj&quot;)]
+	[H: execLink(audioByte,0,&quot;all&quot;)]
+}]
+
+[h,if(roll == 1), code:{
+	[H: audioByte = macroLinkText(&quot;misfrotune@Lib:papaj&quot;)]
+	[H: execLink(audioByte,0,&quot;all&quot;)]
+}]</command>
+    <label>Statystyka</label>
+    <group>Rzuty</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>57a5f3a9-5668-4c95-aba2-dfc7b6458b79</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>2</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: json.indent(macro.args)]
+[h: propertiesNames = &quot;Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Level,AC,MaxHP,HitDie&quot;]
+[h,foreach(prop, propertiesNames),code:{
+[h: setProperty(prop, json.get(macro.args, prop))]
+}]
+[h: Status = &quot;&apos;&quot;+json.get(macro.args, &quot;Status&quot;)+&quot;&apos;&quot;]
+[h: token.name = json.get(macro.args, &quot;Imie&quot;)]
+[h: token.label = json.get(macro.args, &quot;Podpis&quot;)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>editCharacterSheet</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>138559ef-d47e-4496-96e1-c1744bf65b92</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>3</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h:&apos;&lt;!-- ------------------- execAllPlayers (macro name, arguments, players, output to) ----------------------------------------------------- --&gt;&apos;]
+&lt;!-- This macro executes the macro on ALL SELECTED clients. Feed it macro@lib:token, args (json array) --&gt;
+&lt;!-- And optional third argument is allowed where you give a list of clients where this macro should be executed --&gt;
+[h: mac = getStrProp(macro.args, &quot;macroName&quot;)]
+[h: tok = getStrProp(macro.args, &quot;tokenName&quot;)]
+
+[h: userList = getAllPlayerNames()]
+
+[h: outputList = &quot;none&quot;]
+
+[h: self	= getPlayerName()]
+[h: others	= listDelete(userList, listFind(userList, self))]
+
+[h, if(others != &quot;&quot;):broadcast(macroLink(&quot;&lt;color=&apos;red&apos;&gt;&quot;, mac, outputList, tok, &quot;&quot;), others)]
+[h,if(listContains(userList, self)), CODE:{
+	[macro(mac):tok]
+}; {}]</command>
+    <label>execAll</label>
+    <group>Helpers</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>7acbecc6-2848-4a37-85c1-ddce274bc46c</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>4</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: switchToken(macro.args)]
+[overlay(&quot;Papiesz&quot;): { 
+
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;testy2_css@Lib:papaj&quot;&gt;
+	
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;col-md-12&quot;&gt;
+    &lt;div class=&quot;area&quot;&gt;
+      &lt;div class=&quot;row&quot;&gt;
+       &lt;img src=&apos;[r: getTokenImage(100)]&apos;&gt;&lt;/img&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;total&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;health-box&quot;&gt;
+        &lt;div class=&quot;health-bar&quot; id=&quot;p2&quot;&gt;[r: round(HP / MaxHP * 100)]%&lt;/div&gt;
+        &lt;div class=&quot;health-bar-dmg&quot; id=&quot;p3&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;health-bar-header&quot;&gt;[r: token.name], [r: token.label]&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt; 
+&lt;script&gt;
+[r,if(DmgMod&gt;=0),code:{
+	document.getElementById(&quot;p2&quot;).style.width = &apos;[r: HP / MaxHP * 500]px&apos;;
+	document.getElementById(&quot;p3&quot;).style.width = &apos;[r: (DmgMod) / MaxHP * 500]px&apos;;
+	document.getElementById(&quot;p3&quot;).style.left = &apos;[r: HP / MaxHP * 500]px&apos;;
+};
+{
+	document.getElementById(&quot;p2&quot;).style.width = &apos;[r: (HP-abs(DmgMod)) / MaxHP * 500]px&apos;;
+	document.getElementById(&quot;p3&quot;).style.width = &apos;[r: abs(DmgMod) / MaxHP * 500]px&apos;;
+	document.getElementById(&quot;p3&quot;).style.left = &apos;[r: (HP-abs(DmgMod)) / MaxHP * 500]px&apos;;
+	document.getElementById(&quot;p3&quot;).style.backgroundColor = &quot;#00dd00&quot;;
+}]
+
+&lt;/script&gt;}]</command>
+    <label>testFrame</label>
+    <group>BossHP</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>198d6d5b-979e-4329-b318-0734ca9d630a</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>5</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>.area {
+  padding: 10px;
+  text-align: center;
+}
+
+h1 {
+  background-color: #111111;
+  color: #AAAAAA;
+  width: 300px;
+}
+
+.rzulta {
+  background-color: #111111;
+  color: #FFFF00;
+  width: 300px;
+}
+
+h2 {
+  padding: 5px;
+  text-align: center;
+}
+
+p {
+  width: 500px;
+  padding: 1%;
+  margin: auto;
+}
+
+.btn {
+  text-align: center;
+  width: 100px;
+  background-color: #A8C2C4;
+  border: 2px solid #97aeb0;
+  padding: 20px;
+  display: inline-block;
+  margin: 30px 10px;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  cursor: pointer;
+}
+
+.health-box {
+  background-color: #ccc;
+  height: 30px;
+  width: 500px;
+  margin: 0 auto;
+  border: solid 1px #aaa;
+}
+
+.health-bar {
+  background-color: #007f00;
+  width: inherit;
+  height: 28px;
+  position: relative;
+  float:left;
+
+}
+
+.health-bar-dmg {
+  background-color: #dd0000;
+  width: inherit;
+  height: 28px;
+  position: relative;
+}
+
+.health-bar-red {
+  width: 100%;
+  height: 100%;
+  background-color: #cc0000;
+}
+
+.health-bar-blue {
+  width: 100%;
+  height: 100%;
+  background-color: #3bd3df;
+  bottom: 28px;
+  position: relative;
+}
+
+.health-bar-text {
+  position: relative;
+}
+
+.health-bar-header {
+  background-color: #bbb;
+  position: relative;
+  font: Cursive;
+}
+
+.message-box {
+  text-align: center;
+  padding: 5px;
+}
+
+.total,
+.message-box {
+  font-size: 16px;
+  margin: 5px;
+}</command>
+    <label>testy2_css</label>
+    <group>BossHP</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>cf83c6a8-18fa-4446-9dfe-8a902aa2598e</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>6</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: closeOverlay(&quot;Papiesz&quot;)]</command>
+    <label>closeFrame</label>
+    <group>Animacje</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>f547a1b2-3aea-423a-b58c-83e61a05383f</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>7</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: switchToken(macro.args)]
+[overlay(&quot;bbb&quot;): { 
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;victory_css@Lib:papaj&quot;&gt;
+
+&lt;dic class=&quot;dead-div-supreme&quot;&gt;
+&lt;div class=&quot;victory&quot; id=&quot;p2&quot;&gt;
+	&lt;span class=&quot;dead-span&quot;&gt;[r: token.name] has been defeated&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+[h,if(Martwy &lt; 1): Martwy = Martwy+0.1];
+document.getElementById(&apos;p2&apos;).style.color = &apos;rgba(184, 134, 11, &apos;+[r: Martwy]+&apos;)&apos;;
+&lt;/script&gt;
+}]
+[h,if(Martwy == 0.1),code: {
+	[H: audioByte = macroLinkText(&quot;playVictory@Lib:papaj&quot;)]
+	[H: execLink(audioByte,0,&quot;all&quot;)]
+}]
+[h,if(Martwy == 1): setState(&quot;Martwy&quot;, 1)]</command>
+    <label>victory</label>
+    <group>Animacje</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>4ad3194f-8392-4546-978d-60619baf03f8</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>8</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>.victory {
+	position: absolute;
+    top: 50%;
+    
+	text-align: center;
+	height: 50px;
+	width: 100%;
+	line-height: 50px;
+	font-family: Arial;
+	color: rgba(184, 134, 11, 0.5);
+	-webkit-text-stroke: 1px black;
+	font-size: 50px;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dead-div-supreme {
+	padding: 1080px;
+}
+
+.dead-div {
+	position: absolute;
+    top: 50%;
+    
+	text-align: center;
+	height: 50px;
+	width: 100%;
+	line-height: 50px;
+	font-family: Arial;
+	color: rgba(255, 0, 0, 0.5);
+	-webkit-text-stroke: 1px black;
+	font-size: 50px;
+	background-color: rgba(0, 0, 0, 0.4);
+	
+	
+}
+
+.dead-span {
+	display: inline-block;
+	vertical-align: middle;
+	line-height: normal;
+}
+color: rgba(184, 134, 11, 0.5);</command>
+    <label>victory_css</label>
+    <group>Animacje</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>1beb4b28-8604-411c-b15b-04032a99515a</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>9</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: index = getStrProp(macro.args, &quot;index&quot;)]
+[h: name = getStrProp(macro.args, &quot;name&quot;)]
+[h: base = getStrProp(macro.args, &quot;base&quot;)]
+[h: prof = getStrProp(macro.args, &quot;prof&quot;)]
+[h: magic = getStrProp(macro.args, &quot;magic&quot;)]
+[h: input(
+	&quot;newName|&quot;+name+&quot;|Umiejetnosc&quot;,
+	&quot;newBase|&quot;+base+&quot;|Bazowa cecha&quot;,
+	&quot;newProf|Brak wyszkolenia, Półwyszkolenie, Wyszkolenie, Ekspertyza|Wyszkolenie|LIST|SELECT=&quot;+prof,
+	&quot;newMagic|&quot;+magic+&quot;|Dodatkowe bonusy z magii itp.&quot;
+)]
+[h: newSkill = json.set(&quot;&quot;, &quot;name&quot;, newName, &quot;base&quot;, newBase, &quot;prof&quot;, newProf, &quot;magic&quot;, newMagic)]
+[h: SavThrow = json.set(SavThrow, index, newSkill)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>Submit</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>d40a364c-2434-47bd-83dc-f7a9eb913193</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>10</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: closeOverlay(&quot;bbb&quot;)]</command>
+    <label>closeVictory</label>
+    <group>Animacje</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>fc2e373b-f76f-44cd-922a-837f931b4e2d</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>11</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: playClip(&quot;http://185.70.197.39/death_door_bell.wav&quot;)]</command>
+    <label>play</label>
+    <group>Sounds</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>c11fdab6-4714-4a34-943d-df249d01cb49</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>12</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[r,if(!isOwner() &amp;&amp; !isGM()): abort(0)]
+[h: propNames = &quot;WW,US,S,Wt,I,Zw,Zr,Int,SW,Ogd&quot;]
+[frame(&quot;SkillsTest&quot;): {
+	&lt;table&gt;
+	&lt;tr&gt;&lt;th&gt;Umiejetnosc&lt;/th&gt;&lt;th&gt;Cecha&lt;/th&gt;&lt;th&gt;Wartosc cechy&lt;/th&gt;&lt;th&gt;Rozwiniecia&lt;/th&gt;&lt;th&gt;Suma&lt;/th&gt;&lt;/tr&gt;
+	[h: index = 0]
+	[foreach(skill, Skills, &quot;&quot;), code: {
+		&lt;tr&gt;
+		&lt;td&gt;[r: name = json.get(skill, &quot;name&quot;)]&lt;/td&gt;
+		&lt;td&gt;[r: baseName = json.get(skill, &quot;baseChar&quot;)]&lt;/td&gt;
+		&lt;td&gt;[r: base = getProperty(baseName)]&lt;/td&gt;
+		&lt;td&gt;[r: adv = json.get(skill, &apos;advances&apos;)]&lt;/td&gt;
+		&lt;td&gt;[r: sum = base + adv]&lt;/td&gt;
+		&lt;td&gt;[r: macroLink(&quot;Roll&quot;, &quot;Statystyka@Lib:papaj&quot;, &quot;all&quot;, &quot;name=&quot;+name+&quot;; value=&quot;+sum, &quot;selected&quot;)]&lt;/td&gt;
+		&lt;td&gt;[r: macroLink(&quot;Submit&quot;, &quot;Submit@Lib:papaj&quot;, &quot;all&quot;, &quot;index=&quot;+index+&quot;; name=&quot;+name+&quot;; baseChar=&quot;+baseName+&quot;; advances=&quot;+(adv), &quot;selected&quot;)]&lt;/td&gt;
+		&lt;/tr&gt;
+		[h: index = index+1]
+	}]
+	&lt;td&gt;[r: macroLink(&quot;Add new skill&quot;, &quot;AddSkill@Lib:papaj&quot;, &quot;all&quot;, &quot;&quot;, &quot;selected&quot;)]
+	&lt;/table&gt;
+}]
+</command>
+    <label>Skills</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>6a3aad9c-e763-465c-a97e-d0b32a402a92</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>13</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;newName|0|Umiejetnosc&quot;,
+	&quot;newBase|0|Bazowa cecha&quot;,
+	&quot;newProf|Brak wyszkolenia, Półwyszkolenie, Wyszkolenie, Ekspertyza|Wyszkolenie|LIST|SELECT=2&quot;,
+    &quot;newMagic|0|Dodatkowe bonusy z magii itp.&quot;
+)]
+[h: newSkill = json.set(&quot;&quot;, &quot;name&quot;, newName, &quot;base&quot;, newBase, &quot;prof&quot;, newProf, &quot;magic&quot;, newMagic)]
+[h: SavThrow = json.append(SavThrow, newSkill)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>AddSkill</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>75cbebf0-414d-407a-83e7-13df8e8951ed</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>14</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[r,if(!isOwner() &amp;&amp; !isGM()): abort(0)]
+[h: propNames = &quot;Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma&quot;]
+[frame(&quot;SkillsTest&quot;): {
+&lt;html&gt;
+
+&lt;head&gt;
+    &lt;link rel=&apos;onChangeSelection&apos; type=&apos;macro&apos; href=&apos;[r:macroLinkText(&quot;CharSheet@Lib:papaj&quot;, &quot;all&quot;, &quot;&quot;, &quot;selected&quot;)]&apos;&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;CharSheet_css@Lib:papaj&quot;&gt;
+    &lt;title&gt;Character Sheet&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    [h: link = macroLinkText(&quot;editCharacterSheet@Lib:papaj&quot;, &quot;all&quot;, &quot;&quot;, currentToken())]
+    &lt;form action=&quot;[r:link]&quot; method=&quot;json&quot;&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;td&gt;
+                    &lt;table&gt;
+                        &lt;table&gt;
+                            &lt;tr&gt;
+                                &lt;td&gt;&lt;b&gt;Imie: &lt;/b&gt;&lt;/td&gt;
+                                &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;Imie&quot; size=&quot;&quot; maxlength=&quot;&quot; value=&quot;[r:token.name]&quot;&gt;&lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt;
+                                &lt;td&gt;&lt;b&gt;Podpis: &lt;/b&gt;&lt;/td&gt;
+                                &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;Podpis&quot; size=&quot;&quot; maxlength=&quot;&quot; value=&quot;[r:token.label]&quot;&gt;&lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;
+                                &lt;img src=&apos;[r: getTokenImage(100)]&apos;&gt;&lt;/img&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;
+                                &lt;input type=&quot;submit&quot; name=&quot;edit_btn&quot; value=&quot;Zaakceptuj zmiany&quot;&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                &lt;td style=&quot;vertical-align: top&quot;&gt;
+                    &lt;table&gt;
+                        &lt;tr&gt;
+                            &lt;table id=&quot;stats&quot; style=&quot;border: 1px solid #000000;&quot;&gt;
+                                &lt;tr style=&quot;background-color: #ffffff; color: #000000; text-align: center&quot;&gt;
+                                    [foreach(prop, propNames, &quot;&quot;), code: {
+                                    &lt;td class=[r:prop] style=&quot;border: 1px solid #000000;&quot;&gt;[r: macroLink(prop,
+                                        &quot;Statystyka@Lib:papaj&quot;, &quot;all&quot;, &quot;name=&quot;+prop+&quot;; value=&quot;+getProperty(prop+&quot;mod&quot;),
+                                        currentToken())]&lt;/td&gt;
+                                    }]
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    [foreach(prop, propNames, &quot;&quot;), code: {
+                                    &lt;td&gt;&lt;input type=&quot;text&quot; name=[r:prop] size=&quot;5&quot; maxlength=&quot;&quot;
+                                            value=[r:getProperty(prop)]&gt;&lt;/td&gt;
+                                    }]
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Modyfikatory&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    [foreach(prop, propNames, &quot;&quot;), code: {
+                                    &lt;td&gt;&lt;input type=&quot;text&quot; name=[r:prop]+&quot;Mod&quot; size=&quot;5&quot; maxlength=&quot;&quot;
+                                            value=[r:getProperty(prop+&quot;Mod&quot;)] readonly=&gt;&lt;/td&gt;
+                                    }]
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Poziom&lt;/td&gt;
+                                    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;Level&quot; size=&quot;5&quot; maxlength=&quot;&quot;
+                                            value=[r:getProperty(&quot;Level&quot;)]&gt;&lt;/td&gt;
+                                    &lt;td&gt;Bonus za biegłość&lt;/td&gt;
+                                    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;ProfBonus&quot; size=&quot;5&quot; maxlength=&quot;&quot;
+                                            value=[r:getProperty(&quot;ProfBonus&quot;)]&gt;&lt;/td&gt;
+                                    &lt;td&gt;Klasa pancerza&lt;/td&gt;
+                                    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;AC&quot; size=&quot;5&quot; maxlength=&quot;&quot; value=[r:getProperty(&quot;AC&quot;)]&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;Max HP&lt;/td&gt;
+                                    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;MaxHP&quot; size=&quot;5&quot; maxlength=&quot;&quot;
+                                            value=[r:getProperty(&quot;MaxHP&quot;)]&gt;&lt;/td&gt;
+                                    &lt;td&gt;Kość wytrzymałości&lt;/td&gt;
+                                    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;HitDie&quot; size=&quot;5&quot; maxlength=&quot;&quot;
+                                        value=[r:getProperty(&quot;HitDie&quot;)]&gt;&lt;/td&gt;
+                                    &lt;td&gt;[r: macroLink(&quot;Krótki odpoczynek&quot;, &quot;ShortRest@Lib:papaj&quot;, &quot;all&quot;, &quot;&quot;, currentToken())]&lt;/td&gt;
+                                    &lt;td&gt;&lt;p&gt;Pozostało kości:&lt;/p&gt;&lt;p&gt;[r: HitDieRemaining]&lt;/p&gt;&lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;[r: macroLink(&quot;Długi odpoczynek&quot;, &quot;LongRest@Lib:papaj&quot;, &quot;all&quot;, &quot;&quot;, currentToken())]&lt;/td&gt;
+                                &lt;/tr&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+            &lt;/tr&gt;
+            [if(MaxHP != 0),code:{
+            &lt;tr&gt;
+                HP: [r:HP] / [r:MaxHP]
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;div style=&quot;background-color: black; width: 10&quot;&gt;
+                    &lt;div style=&quot;background-color: green; width: [r:HP/MaxHP*100]%&quot;&gt;[r:round(HP/MaxHP*100)]%&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/tr&gt;
+            };
+            {
+
+            }]
+            [r,if(TmpHP &gt; 0),code:{
+            &lt;tr&gt;
+                Tmp HP: [r:TmpHP]
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;div style=&quot;background-color: black; width: 10&quot;&gt;
+                    &lt;div style=&quot;background-color: blue; width: [r:TmpHP/MaxHP*100]%&quot;&gt;[r:round(TmpHP/MaxHP*100)]%&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/tr&gt;
+            }]
+        &lt;/table&gt;
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/form&gt;
+
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Umiejetnosc&lt;/th&gt;
+            &lt;th&gt;Cecha&lt;/th&gt;
+            &lt;th style=&quot;width: 5px&quot;&gt;Modyfikator cechy&lt;/th&gt;
+            &lt;th&gt;Przeszkolenie&lt;/th&gt;
+            &lt;th&gt;Magiczne bonusy&lt;/th&gt;
+            &lt;th style=&quot;width: 5px&quot;&gt;Suma bonusów&lt;/th&gt;
+        &lt;/tr&gt;
+        [h: index = 0]
+        [foreach(skill, SavThrow, &quot;&quot;), code: {
+        &lt;tr class=[r: baseName=json.get(skill, &quot;base&quot; )]&gt;
+            &lt;td&gt;[r:name = json.get(skill, &quot;name&quot;)]&lt;/td&gt;
+            &lt;td&gt;[r: baseName]&lt;/td&gt;
+            &lt;td&gt;[r: base = getProperty(baseName+&quot;Mod&quot;)]
+            [h,if(base==&quot;&quot;): base = 0]&lt;/td&gt;
+            [h: prof = json.get(skill, &apos;prof&apos;)]
+            [h,switch(prof):
+                case 0: bonus=0;
+                case 1: bonus=floor(ProfBonus/2);
+                case 2: bonus=ProfBonus;
+                case 3: bonus=ProfBonus*2;
+                default: bonus=0;
+            ]
+            [h,switch(prof):
+                case 0: bonusText=&quot;Brak wyszkolenia&quot;;
+                case 1: bonusText=&quot;Połowiczne wyszkolenie&quot;;
+                case 2: bonusText=&quot;Wyszkolenie&quot;;
+                case 3: bonusText=&quot;Ekspertyza&quot;;
+                default: bonusText=&quot;Brak wyszkolenia&quot;;
+            ]
+            [h: magic = json.get(skill, &apos;magic&apos;)]
+            [h,if(magic == &quot;null&quot;): magic = 0]
+            &lt;td&gt;[r: bonusText]&lt;/td&gt;
+            &lt;td&gt;[r: magic]&lt;/td&gt;
+            &lt;td&gt;[r: sum = base + bonus + magic]&lt;/td&gt;
+            &lt;td&gt;[r: macroLink(&quot;Turlnij&quot;, &quot;Statystyka@Lib:papaj&quot;, &quot;all&quot;, &quot;name=&quot;+name+&quot;; value=&quot;+sum, currentToken())]
+            &lt;/td&gt;
+            &lt;td&gt;[r: macroLink(&quot;Edytuj&quot;, &quot;Submit@Lib:papaj&quot;, &quot;all&quot;, &quot;index=&quot;+index+&quot;; name=&quot;+name+&quot;; base=&quot;+baseName+&quot;;
+                prof=&quot;+(prof)+&quot;; magic=&quot;+(magic), currentToken())]&lt;/td&gt;
+        &lt;/tr&gt;
+        [h: index = index+1]
+        }]
+        &lt;td&gt;[r: macroLink(&quot;Add new skill&quot;, &quot;AddSkill@Lib:papaj&quot;, &quot;all&quot;, &quot;&quot;, currentToken())]
+    &lt;/table&gt;
+    &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Nazwa ataku&lt;/th&gt;&lt;th&gt;Obrażenia&lt;/th&gt;&lt;th&gt;Typ obrażeń&lt;/th&gt;&lt;/tr&gt;
+        [h: index = 0]
+        [foreach(dmg, DmgTypes, &quot;&quot;), code: {
+            &lt;tr class=[r: type = json.get(dmg, &quot;type&quot;)]&gt;
+            &lt;td&gt;[r:name = json.get(dmg, &quot;name&quot;)]&lt;/td&gt;
+            &lt;td&gt;[r: dmgValue = json.get(dmg, &quot;dmg&quot;)]&lt;/td&gt;
+            &lt;td&gt;[r: type]&lt;/td&gt;
+            &lt;td&gt;[r: macroLink(&quot;Turlnij&quot;, &quot;Dmg@Lib:papaj&quot;, &quot;all&quot;, &quot;name=&quot;+name+&quot;; dmgvalue=&quot;+dmgValue+&quot;; type=&quot;+type, currentToken())]&lt;/td&gt;
+            &lt;td&gt;[r: macroLink(&quot;Edytuj&quot;, &quot;SubmitDmg@Lib:papaj&quot;, &quot;all&quot;, &quot;index=&quot;+index+&quot;; name=&quot;+name+&quot;; dmgvalue=&quot;+dmgValue+&quot;; type=&quot;+type, currentToken())]&lt;/td&gt;
+            &lt;/tr&gt;
+            [h: index = index+1]
+        }]
+        &lt;td&gt;[r: macroLink(&quot;Add new dmg&quot;, &quot;AddDmg@Lib:papaj&quot;, &quot;all&quot;, &quot;&quot;, currentToken())]
+    &lt;/table&gt;
+    &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Spell slot lvl&lt;/th&gt;&lt;th&gt;Sloty&lt;/th&gt;&lt;/tr&gt;
+        [h: index = 0]
+        [foreach(slot, SpellSlots, &quot;&quot;), code: {
+            &lt;tr class=spell[r: lvl = json.get(slot, &quot;lvl&quot;)]&gt;
+            &lt;td&gt;[r: lvl]&lt;/td&gt;
+            [h: maxSlots = json.get(slot, &quot;max&quot;)]
+            [h: current = json.get(slot, &quot;current&quot;)]
+            &lt;td&gt;[r,for(i,0,current): &quot;W&quot;]
+            [r,for(i,current,maxSlots): &quot;Z&quot;]&lt;/td&gt;
+            &lt;td&gt;[r: macroLink(&quot;Zużyj komórkę&quot;, &quot;UseSlot@Lib:papaj&quot;, &quot;all&quot;, &quot;index=&quot;+index+&quot;; lvl=&quot;+lvl+&quot;; maxSlots=&quot;+maxSlots+&quot;; current=&quot;+current, currentToken())]&lt;/td&gt;
+            &lt;td&gt;[r: macroLink(&quot;Dodaj pustą komórkę&quot;, &quot;ResetSingleSlot@Lib:papaj&quot;, &quot;all&quot;, &quot;index=&quot;+index+&quot;; lvl=&quot;+lvl+&quot;; maxSlots=&quot;+maxSlots+&quot;; current=&quot;+current, currentToken())]&lt;/td&gt;
+            &lt;td&gt;[r: macroLink(&quot;Edytuj&quot;, &quot;EditSlot@Lib:papaj&quot;, &quot;all&quot;, &quot;index=&quot;+index+&quot;; lvl=&quot;+lvl+&quot;; maxSlots=&quot;+maxSlots+&quot;; current=&quot;+current, currentToken())]&lt;/td&gt;
+            &lt;/tr&gt;
+            [h: index = index+1]
+        }]
+        &lt;td&gt;[r: macroLink(&quot;Dodaj nowy poziom komórek&quot;, &quot;AddSpellSlotLvl@Lib:papaj&quot;, &quot;all&quot;, &quot;&quot;, currentToken())]
+        &lt;td&gt;[r: macroLink(&quot;Resetuj wszystkie komórki&quot;, &quot;ResetAllSlot@Lib:papaj&quot;, &quot;all&quot;, &quot;&quot;, currentToken())]
+    &lt;/table&gt;
+    &lt;table&gt;
+    &lt;tr&gt;&lt;th&gt;Typ Pota&lt;/th&gt;&lt;th&gt;Heal&lt;/th&gt;&lt;th&gt;Wartość&lt;/th&gt;&lt;th&gt;Ilość&lt;/th&gt;&lt;th&gt;Dojenie&lt;/th&gt;&lt;th&gt;Uzupełnienie&lt;/th&gt;&lt;/tr&gt;
+    [h: index = 0]
+    [foreach(potion, Potions, &quot;&quot;), code: {
+        &lt;tr class=potion[r: index ]&gt;
+        &lt;td&gt;[r: type = json.get(potion, &quot;type&quot;)]&lt;/td&gt;
+        &lt;td&gt;[r: healing = json.get(potion, &quot;healing&quot;)]&lt;/td&gt;
+        &lt;td&gt;[r: value = json.get(potion, &quot;value&quot;)]&lt;/td&gt;
+        &lt;td&gt;[r: quantity = json.get(potion, &quot;quantity&quot;)]&lt;/td&gt;
+        &lt;td&gt;[r: macroLink(&quot;Wydój&quot;, &quot;DojeniePota@Lib:papaj&quot;, &quot;all&quot;, &quot;index=&quot;+index+&quot;; type=&quot;+type+&quot;; healing=&quot;+healing+&quot;; value=&quot;+value+&quot;; quantity=&quot;+quantity+&quot;; maxHealing=&quot;+json.get(potion, &quot;maxHealing&quot;), currentToken())]&lt;/td&gt;
+        &lt;td&gt;[r: macroLink(&quot;Uzupełnij&quot;, &quot;UzupelnijPota@Lib:papaj&quot;, &quot;all&quot;, &quot;index=&quot;+index+&quot;; type=&quot;+type+&quot;; healing=&quot;+healing+&quot;; value=&quot;+value+&quot;; quantity=&quot;+quantity+&quot;; maxHealing=&quot;+json.get(potion, &quot;maxHealing&quot;), currentToken())]&lt;/td&gt;
+        &lt;/tr&gt;
+        [h: index = index+1]
+    }]
+    &lt;/table&gt;
+    }]</command>
+    <label>CharSheet</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>75b4dab9-3cea-4093-b7bf-b1ee79aca5ce</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>15</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>.Strength {
+    background-color: #400000;
+    color: white;
+  }
+  
+  .Dexterity {
+    background-color: #772000;
+    color: white;
+  }
+  
+  .Constitution {
+    background-color: #777700;
+    color: white;
+  }
+  
+  .Intelligence {
+    background-color: #007700;
+    color: white;
+  }
+  
+  .Wisdom {
+    background-color: #007777;
+    color: white;
+  }
+  
+  .Charisma {
+    background-color: #007FFF;
+    color: white;
+  }
+  
+  a {
+    color: white;
+    -webkit-text-stroke: 1px black;
+  }
+
+  table {
+    color: white;
+    background-color: rgb(53, 53, 66);
+  }
+
+  .acid {
+    background-color: #5fb916;
+    color: white;
+  }
+  
+  .bludgeoning {
+    background-color: #596351;
+    color: white;
+  }
+
+  .cold {
+    background-color: #1e768b;
+    color: white;
+  }
+
+  .fire {
+    background-color: #cf2055;
+    color: white;
+  }
+
+  .force {
+    background-color: #269da5;
+    color: white;
+  }
+
+  .lightning {
+    background-color: #ffffff;
+    color: black;
+  }
+
+  .necrotic {
+    background-color: #161111;
+    color: white;
+  }
+
+  .piercing {
+    background-color: #b94a16;
+    color: white;
+  }
+
+  .poison {
+    background-color: #16b931;
+    color: white;
+  }
+
+  .psychic {
+    background-color: #b916b9;
+    color: white;
+  }
+
+  .radiant {
+    background-color: #9eb133;
+    color: white;
+  }
+
+  .slashing {
+    background-color: #6b6e56;
+    color: white;
+  }
+
+  .thunder {
+    background-color: #4e7483;
+    color: white;
+  }
+
+  .spell1 {
+    background-color: #969696;
+    color: white;
+  }
+
+  .spell2 {
+    background-color: #968686;
+    color: white;
+  }
+
+  .spell3 {
+    background-color: #967676;
+    color: white;
+  }
+
+  .spell4 {
+    background-color: #966666;
+    color: white;
+  }
+
+  .spell5 {
+    background-color: #965656;
+    color: white;
+  }
+
+  .spell6 {
+    background-color: #964646;
+    color: white;
+  }
+
+  .spell6 {
+    background-color: #963636;
+    color: white;
+  }
+
+  .spell7 {
+    background-color: #962626;
+    color: white;
+  }
+
+  .spell8 {
+    background-color: #961616;
+    color: white;
+  }
+
+  .spell9 {
+    background-color: #960606;
+    color: white;
+  }
+
+  .SpellList0 {
+    background-color: rgb(116, 90, 90);
+  }
+
+  .SpellList1 {
+    background-color: rgb(219, 128, 53);
+  }
+
+  .potion0 {
+    background-color: rgb(90, 90, 90);
+  }
+
+  .potion1 {
+    background-color: green
+  }
+
+  .potion2 {
+    background-color: blue
+  }
+
+  .potion3 {
+    background-color: purple
+  }</command>
+    <label>CharSheet_css</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>f36d8f89-86ce-4f89-845b-49708bdce7d7</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>16</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: switchToken(macro.args)]
+[overlay(&quot;dead&quot;): { 
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;victory_css@Lib:papaj&quot;&gt;
+
+&lt;dic class=&quot;dead-div-supreme&quot;&gt;
+&lt;div class=&quot;dead-div&quot; id=&quot;p3&quot;&gt;
+	&lt;span class=&quot;dead-span&quot;&gt;[r: upper(token.name)] DIED&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+[h,if(Martwy &lt; 1): Martwy = Martwy+0.1];
+document.getElementById(&apos;p3&apos;).style.color = &apos;rgba(255, 0, 0, &apos;+[r: Martwy]+&apos;)&apos;;
+&lt;/script&gt;
+}]
+
+[h,if(Martwy == 0.5),code: {
+	[H: audioByte = macroLinkText(&quot;playDead@Lib:papaj&quot;)]
+	[H: execLink(audioByte,0,&quot;all&quot;)]
+}]
+[h,if(Martwy == 1),code: {
+	[h: setState(&quot;Martwy&quot;, 1)]
+}]</command>
+    <label>dead</label>
+    <group>Animacje</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>749dd5bd-b470-4842-81d3-d2e02c95504f</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>17</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: closeOverlay(&quot;dead&quot;)]</command>
+    <label>closeDead</label>
+    <group>Animacje</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>22a386f1-34d9-4a27-aa51-3a59ba83f566</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>18</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: playClip(&quot;http://185.70.197.39/dark-souls-you-died-sound-effect_hm5sYFG.mp3&quot;)]</command>
+    <label>playDead</label>
+    <group>Sounds</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>a5fadbc9-8c5f-4906-8fd2-8c1f7619cb73</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>19</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[H: time = json.get(getInfo(&quot;client&quot;),&quot;timeInMs&quot;)]
+[H: endTime = 2500]
+[H, if(json.isEmpty(macro.args)), code: {
+   [H: startTime = time]
+   [H: lastSecond = 0]
+   [H: id = currentToken()]
+};{
+   [H: startTime = getStrProp(macro.args,&quot;startTime&quot;)]
+   [H: lastSecond = getStrProp(macro.args,&quot;lastSecond&quot;)]
+   [H: id = getStrProp(macro.args,&quot;id&quot;)]
+}]
+[H: elapsedTime = time - startTime]
+[H: thisSecond = floor(elapsedTime/250)]
+[H, if(thisSecond &gt; lastSecond), code: {
+   &lt;!---
+	core dead code
+		---&gt;
+				[MACRO(&quot;execAll@Lib:papaj&quot;): &quot;macroName=dead@Lib:papaj; tokenName=&quot;+id]
+};{}]
+[H, if(elapsedTime &lt; endTime), code: {
+   [H: args = strformat(&quot;startTime=%{startTime};lastSecond=%{thisSecond};id=%{id}&quot;)]
+   [H: link = macroLinkText(&quot;Animate_dead@this&quot;,&quot;none&quot;,args)]
+   [H: execLink(link,1)]
+};{}]
+
+
+
+</command>
+    <label>Animate_dead</label>
+    <group>Animacje</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>564b1009-23a2-41d6-b331-9f2b2cd9adb4</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>20</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[H: time = json.get(getInfo(&quot;client&quot;),&quot;timeInMs&quot;)]
+[H: endTime = 2500]
+[H, if(json.isEmpty(macro.args)), code: {
+   [H: startTime = time]
+   [H: lastSecond = 0]
+   [H: id = currentToken()]
+};{
+   [H: startTime = getStrProp(macro.args,&quot;startTime&quot;)]
+   [H: lastSecond = getStrProp(macro.args,&quot;lastSecond&quot;)]
+   [H: id = getStrProp(macro.args,&quot;id&quot;)]
+}]
+[H: elapsedTime = time - startTime]
+[H: thisSecond = floor(elapsedTime/250)]
+[H, if(thisSecond &gt; lastSecond), code: {
+   &lt;!---
+	core dead code
+		---&gt;
+				[MACRO(&quot;execAll@Lib:papaj&quot;): &quot;macroName=victory@Lib:papaj; tokenName=&quot;+id]
+};{}]
+[H, if(elapsedTime &lt; endTime), code: {
+   [H: args = strformat(&quot;startTime=%{startTime};lastSecond=%{thisSecond};id=%{id}&quot;)]
+   [H: link = macroLinkText(&quot;Animate_victory@this&quot;,&quot;none&quot;,args)]
+   [H: execLink(link,1)]
+};{}]
+
+
+
+</command>
+    <label>Animate_victory</label>
+    <group>Animacje</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>4634e70f-d6f0-4739-a6c4-bf32d41a1f33</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>21</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: playClip(&quot;http://185.70.197.39/bossout.mp3&quot;)]</command>
+    <label>playVictory</label>
+    <group>Sounds</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>8b96bebf-53dd-4b22-ba87-b7c4390d9e6b</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>22</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: switchToken(macro.args)]
+[overlay(&quot;bbb&quot;): { 
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;victory_css@Lib:papaj&quot;&gt;
+
+&lt;dic class=&quot;dead-div-supreme&quot;&gt;
+&lt;div class=&quot;victory&quot; id=&quot;p2&quot;&gt;
+	&lt;span class=&quot;dead-span&quot;&gt;Victory achieved&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+[h,if(Martwy &lt; 1): Martwy = Martwy+0.1];
+document.getElementById(&apos;p2&apos;).style.color = &apos;rgba(184, 134, 11, &apos;+[r: Martwy]+&apos;)&apos;;
+&lt;/script&gt;
+}]
+[h,if(Martwy == 0.1),code: {
+	[H: audioByte = macroLinkText(&quot;playVictory@Lib:papaj&quot;)]
+	[H: execLink(audioByte,0,&quot;all&quot;)]
+}]
+[h,if(Martwy == 1): setState(&quot;Martwy&quot;, 1)]</command>
+    <label>victory_achieved</label>
+    <group>Animacje</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>fb04bc4a-d601-42a5-bd86-2317262f5829</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>23</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[H: time = json.get(getInfo(&quot;client&quot;),&quot;timeInMs&quot;)]
+[H: endTime = 2500]
+[H, if(json.isEmpty(macro.args)), code: {
+   [H: startTime = time]
+   [H: lastSecond = 0]
+   [H: id = currentToken()]
+};{
+   [H: startTime = getStrProp(macro.args,&quot;startTime&quot;)]
+   [H: lastSecond = getStrProp(macro.args,&quot;lastSecond&quot;)]
+   [H: id = getStrProp(macro.args,&quot;id&quot;)]
+}]
+[H: elapsedTime = time - startTime]
+[H: thisSecond = floor(elapsedTime/250)]
+[H, if(thisSecond &gt; lastSecond), code: {
+   &lt;!---
+	core dead code
+		---&gt;
+				[MACRO(&quot;execAll@Lib:papaj&quot;): &quot;macroName=victory_achieved@Lib:papaj; tokenName=&quot;+id]
+};{}]
+[H, if(elapsedTime &lt; endTime), code: {
+   [H: args = strformat(&quot;startTime=%{startTime};lastSecond=%{thisSecond};id=%{id}&quot;)]
+   [H: link = macroLinkText(&quot;Animate_victory_achieved@this&quot;,&quot;none&quot;,args)]
+   [H: execLink(link,1)]
+};{}]
+
+
+
+</command>
+    <label>Animate_victory_achieved</label>
+    <group>Animacje</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>99dfc200-085a-46d9-b63a-c6febcd219fc</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>24</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h:troll = json.set(&quot;{}&quot;, &quot;name&quot;, &quot;Troll&quot;, &quot;HD&quot;, 4, &quot;HP&quot;, 75)] [h:orc = json.set(&quot;{}&quot;, &quot;name&quot;, &quot;Orc&quot;, &quot;HD&quot;, 3, &quot;HP&quot;, 13)] [h:goblin = json.set(&quot;{}&quot;, &quot;name&quot;, &quot;Goblin&quot;, &quot;HD&quot;, 2, &quot;HP&quot;, 6)] [h:gnoll = json.set(&quot;{}&quot;, &quot;name&quot;, &quot;Gnoll&quot;, &quot;HD&quot;, 3, &quot;HP&quot;, 19)] [h:kobold=json.set(&quot;{}&quot;, &quot;name&quot;, &quot;Kobold&quot;, &quot;HD&quot;, 1, &quot;HP&quot;, 4)]
+[h:monsters = json.append(&quot;{}&quot;, troll)]
+[h:monsters = json.append(monsters, orc)]
+[h:monsters = json.append(monsters, goblin)]
+[h:monsters = json.append(monsters, gnoll)]
+[h:monsters = json.append(monsters, kobold)]
+[h:monsters2 = json.set(&quot;{}&quot;, &quot;Troll&quot;, troll, &quot;Orc&quot;, orc, &quot;Goblin&quot;, goblin, &quot;Gnoll&quot;, gnoll, &quot;Kobold&quot;, kobold)]
+
+
+[h: whichKey = &quot;name&quot;]
+[h: whichDirection = &quot;A+&quot;]
+[h,if(substring(whichDirection,1)==&quot;+&quot;): dirString = &quot;ascending&quot;; dirString = &quot;descending&quot;] 
+
+[h:sortObj=Skills] 
+[h:sortKey = whichKey]
+[h:sortDirection = whichDirection]
+[h:sortObjContentList = json.fields(sortObj)]
+[h:keyList = &quot;&quot;] 
+[h:sortedJSON = &quot;&quot;] 
+
+[h,foreach(item, sortObjContentList),CODE: {
+
+  [h: itemDetail = json.get(sortObj,item)]
+  [h: keyList = listAppend(keyList, json.get(itemDetail, sortKey))]
+
+}] 
+
+[h:keyList = listSort(keyList, sortDirection)] 
+
+[h: usedList = &quot;&quot;]
+[h,foreach(key,keyList),CODE: { 
+	[h,foreach(object,sortObj),CODE:
+	{
+	    [h:sortOnValue = json.get(object, sortKey)]
+	    [h,if(sortOnValue == key &amp;&amp; !listContains(usedList, key)): sortedJSON=json.append(sortedJSON, object);&quot;&quot;]
+	}]
+	[h: usedList = listAppend(usedList, key)]
+}]
+
+[h:json.indent(sortedJSON, 3)]
+[h: Skills = sortedJSON]
+[MACRO(&quot;SortSkillsFav@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>SortSkills</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>d0bf8976-dd0a-439f-ae6e-4a7ce2f3046d</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>25</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: index = getStrProp(macro.args, &quot;index&quot;)]
+[h: name = getStrProp(macro.args, &quot;name&quot;)]
+[h: baseChar = getStrProp(macro.args, &quot;baseChar&quot;)]
+[h: advances = getStrProp(macro.args, &quot;advances&quot;)]
+[h: fav = getStrProp(macro.args, &quot;fav&quot;)]
+[h: newSkill = json.set(&quot;&quot;, &quot;name&quot;, name, &quot;baseChar&quot;, baseChar, &quot;advances&quot;, advances, &quot;fav&quot;, fav)]
+[h: Skills = json.set(Skills, index, newSkill)]
+&lt;br /&gt;
+[MACRO(&quot;SortSkills@Lib:papaj&quot;): &quot;&quot;]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>Ulubione</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>b326acdf-36c4-40a6-8e35-f524768cc7fd</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>26</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h:troll = json.set(&quot;{}&quot;, &quot;name&quot;, &quot;Troll&quot;, &quot;HD&quot;, 4, &quot;HP&quot;, 75)] [h:orc = json.set(&quot;{}&quot;, &quot;name&quot;, &quot;Orc&quot;, &quot;HD&quot;, 3, &quot;HP&quot;, 13)] [h:goblin = json.set(&quot;{}&quot;, &quot;name&quot;, &quot;Goblin&quot;, &quot;HD&quot;, 2, &quot;HP&quot;, 6)] [h:gnoll = json.set(&quot;{}&quot;, &quot;name&quot;, &quot;Gnoll&quot;, &quot;HD&quot;, 3, &quot;HP&quot;, 19)] [h:kobold=json.set(&quot;{}&quot;, &quot;name&quot;, &quot;Kobold&quot;, &quot;HD&quot;, 1, &quot;HP&quot;, 4)]
+[h:monsters = json.append(&quot;{}&quot;, troll)]
+[h:monsters = json.append(monsters, orc)]
+[h:monsters = json.append(monsters, goblin)]
+[h:monsters = json.append(monsters, gnoll)]
+[h:monsters = json.append(monsters, kobold)]
+[h:monsters2 = json.set(&quot;{}&quot;, &quot;Troll&quot;, troll, &quot;Orc&quot;, orc, &quot;Goblin&quot;, goblin, &quot;Gnoll&quot;, gnoll, &quot;Kobold&quot;, kobold)]
+
+
+[h: whichKey = &quot;fav&quot;]
+[h: whichDirection = &quot;N-&quot;]
+[h,if(substring(whichDirection,1)==&quot;+&quot;): dirString = &quot;ascending&quot;; dirString = &quot;descending&quot;] 
+
+[h:sortObj=Skills] 
+[h:sortKey = whichKey]
+[h:sortDirection = whichDirection]
+[h:sortObjContentList = json.fields(sortObj)]
+[h:keyList = &quot;&quot;] 
+[h:sortedJSON = &quot;&quot;] 
+
+[h,foreach(item, sortObjContentList),CODE: {
+
+  [h: itemDetail = json.get(sortObj,item)]
+  [h: keyList = listAppend(keyList, json.get(itemDetail, sortKey))]
+
+}] 
+
+[h:keyList = listSort(keyList, sortDirection)] 
+
+[h: usedList = &quot;&quot;]
+[h,foreach(key,keyList),CODE: { 
+	[h,foreach(object,sortObj),CODE:
+	{
+	    [h:sortOnValue = json.get(object, sortKey)]
+	    [h,if(sortOnValue == key &amp;&amp; !listContains(usedList, key)): sortedJSON=json.append(sortedJSON, object);&quot;&quot;]
+	}]
+	[h: usedList = listAppend(usedList, key)]
+}]
+
+[h:json.indent(sortedJSON, 3)]
+[h: Skills = sortedJSON]</command>
+    <label>SortSkillsFav</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>680ace6a-a1bf-4358-8391-53add3207214</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>27</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: playClip(&quot;http://185.70.197.39/o-bogowie-walka.mp3&quot;, 1, 0.1)]</command>
+    <label>o-bogowie-walka</label>
+    <group>Sounds</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>6b3ad47d-1c2d-4dab-a4a3-2523738384ab</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>28</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>&lt;font color=CCCCCC bgcolor=black&gt;
+[h: name = getStrProp(macro.args, &quot;name&quot;)]
+[h: dmgValue = getStrProp(macro.args, &quot;dmgValue&quot;)]
+[h: type = getStrProp(macro.args, &quot;type&quot;)]
+
+&lt;h1&gt;[r:name]&lt;/h1&gt;
+&lt;h2&gt;Roll: [r: dmgValue]&lt;/h2&gt;
+&lt;h2&gt;Dmg: [r: eval(dmgValue)]&lt;/h2&gt;
+&lt;h3&gt;Type: [r: type]&lt;/h3&gt;
+&lt;/font&gt;</command>
+    <label>Dmg</label>
+    <group>Rzuty</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>a551360e-df7b-4ec9-b4fa-7538056d4dfd</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>29</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: index = getStrProp(macro.args, &quot;index&quot;)]
+[h: name = getStrProp(macro.args, &quot;name&quot;)]
+[h: dmgValue = getStrProp(macro.args, &quot;dmgValue&quot;)]
+[h: type = getStrProp(macro.args, &quot;type&quot;)]
+[h: input(
+	&quot;newName|&quot;+name+&quot;|Atak&quot;,
+	&quot;newDmgValue|&quot;+dmgValue+&quot;|Rzut na obrażenia&quot;,
+	&quot;newType|&quot;+type+&quot;|Typ obrażeń&quot;
+)]
+[h: newDmg = json.set(&quot;&quot;, &quot;name&quot;, newName, &quot;dmg&quot;, newDmgValue, &quot;type&quot;, newType)]
+[h: DmgTypes = json.set(DmgTypes, index, newDmg)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>SubmitDmg</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>0862059c-a041-4620-8737-f0ecdc7deb8e</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>30</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;newName|0|Atak&quot;,
+	&quot;newDmgValue|0|Rzut na obrażenia&quot;,
+	&quot;newType|0|Typ obrażeń&quot;
+)]
+[h: newDmg = json.set(&quot;&quot;, &quot;name&quot;, newName, &quot;dmg&quot;, newDmgValue, &quot;type&quot;, newType)]
+[h: DmgTypes = json.append(DmgTypes, newDmg)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>AddDmg</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>93045f77-96bd-4595-891f-f6cd303a54f8</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>31</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: index = getStrProp(macro.args, &quot;index&quot;)]
+[h: lvl = getStrProp(macro.args, &quot;lvl&quot;)]
+[h: maxSlots = getStrProp(macro.args, &quot;maxSlots&quot;)]
+[h: current = getStrProp(macro.args, &quot;current&quot;)]
+[h: input(
+	&quot;slotsUsed|1|Ile slotów chcesz użyć?&quot;
+)]
+[h: newSlot = json.set(&quot;&quot;, &quot;lvl&quot;, lvl, &quot;max&quot;, maxSlots, &quot;current&quot;, max(current-abs(slotsUsed),0))]
+[h: SpellSlots = json.set(SpellSlots, index, newSlot)]
+Slot [r: lvl] x[r: abs(slotsUsed)] zużyte. Pozostało: [r: max(current-abs(slotsUsed),0))]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>UseSlot</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>8d4c6718-56ce-428d-8d41-d143c78194b6</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>32</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;name||Name&quot;,
+	&quot;tier||Spell lvl&quot;,
+	&quot;castTime||castTime&quot;,
+	&quot;range||range&quot;,
+	&quot;components||components&quot;,
+	&quot;duration||duration&quot;,
+	&quot;SaveThrow||SaveThrow&quot;,
+	&quot;AttackSave|Brak, Attack, Save, Attack + Save|Attack/Save|LIST&quot;,
+	&quot;Effect||Effect&quot;
+)]
+[h: newSpell = json.set(&quot;&quot;, &quot;name&quot;, name, &quot;tier&quot;, tier, &quot;castTime&quot;, castTime, &quot;range&quot;, range, &quot;components&quot;, components, &quot;duration&quot;, duration, &quot;SaveThrow&quot;, SaveThrow, &quot;Attack/Save&quot;, AttackSave, &quot;Effect&quot;, Effect)]
+[h: SpellList = json.append(SpellList, newSpell)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>AddSpell</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>7315beb6-336d-4ae5-a179-b4a8b0c60754</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>33</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: index = getStrProp(macro.args, &quot;index&quot;)]
+[h: lvl = getStrProp(macro.args, &quot;lvl&quot;)]
+[h: maxSlots = getStrProp(macro.args, &quot;maxSlots&quot;)]
+[h: current = getStrProp(macro.args, &quot;current&quot;)]
+[h: newSlot = json.set(&quot;&quot;, &quot;lvl&quot;, lvl, &quot;max&quot;, maxSlots, &quot;current&quot;, min(current+1,maxSlots))]
+[h: SpellSlots = json.set(SpellSlots, index, newSlot)]
+Spell slot [r: lvl] lvlu został zregenerowany. Pozostało: [r: min(current+1,maxSlots)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>ResetSingleSlot</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>a24688da-c17b-43b5-9f92-176b3180b670</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>34</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: index = getStrProp(macro.args, &quot;index&quot;)]
+[h: lvl = getStrProp(macro.args, &quot;lvl&quot;)]
+[h: maxSlots = getStrProp(macro.args, &quot;maxSlots&quot;)]
+[h: current = getStrProp(macro.args, &quot;current&quot;)]
+[h: input(
+	&quot;lvl|&quot;+lvl+&quot;|Poziom&quot;,
+	&quot;maxSlots|&quot;+maxSlots+&quot;|Ilość slotów&quot;
+)]
+[h: newSlot = json.set(&quot;&quot;, &quot;lvl&quot;, lvl, &quot;max&quot;, maxSlots, &quot;current&quot;, maxSlots)]
+[h: SpellSlots = json.set(SpellSlots, index, newSlot)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>EditSlot</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>1bcea272-cb75-4b98-8d17-6e1d05a6b60a</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>35</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: index = -1]
+[h: allSlots = SpellSlots]
+[h,foreach(slot, allSlots),code:{
+	[h: index = index+1]
+	[h: lvl = json.get(slot, &quot;lvl&quot;)]
+	[h: maxSlots = json.get(slot, &quot;max&quot;)]
+	[h: current = json.get(slot, &quot;current&quot;)]
+	[h: newSlot = json.set(&quot;&quot;, &quot;lvl&quot;, lvl, &quot;max&quot;, maxSlots, &quot;current&quot;, maxSlots)]
+	[h: SpellSlots = json.set(SpellSlots, index, newSlot)]
+}]
+Wszystkie sloty zaklęć zostały zresetowane
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>ResetAllSlot</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>ef176973-8807-46e7-8312-7d1c59d9015c</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>36</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;diceUsed|0|Ile kości chcesz użyć&quot;
+)]
+[h: hpRestored = 0]
+[h,if(diceUsed &gt; HitDieRemaining):diceUsed=HitDieRemaining]
+Rzuty na regen: 
+[r,for(i,0,diceUsed):hpRestored=hpRestored+eval(hitDie)]
+&lt;h1&gt;Odzyskano: [r: hpRestored] HP&lt;/h1&gt;
+&lt;h2&gt;Obecne HP: [h: HP=HP+hpRestored]
+[h,if(HP &gt; MaxHP): HP = MaxHP]
+[h: bar.Health = HP / MaxHP]
+[r: HP]&lt;/h2&gt;
+Pozostało rzutów na regen: [r:HitDieRemaining=HitDieRemaining-diceUsed]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>ShortRest</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>6c4f15cc-9037-40c5-87a1-2b4da01c1d06</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>37</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;confirm|0|Czy na pewno chcesz odpocząć?|CHECK&quot;
+)]
+[h,if(confirm==0): abort(0)]
+[h: index = -1]
+[h: allSlots = SpellSlots]
+[h,foreach(slot, allSlots),code:{
+	[h: index = index+1]
+	[h: lvl = json.get(slot, &quot;lvl&quot;)]
+	[h: maxSlots = json.get(slot, &quot;max&quot;)]
+	[h: current = json.get(slot, &quot;current&quot;)]
+	[h: newSlot = json.set(&quot;&quot;, &quot;lvl&quot;, lvl, &quot;max&quot;, maxSlots, &quot;current&quot;, maxSlots)]
+	[h: SpellSlots = json.set(SpellSlots, index, newSlot)]
+}]
+&lt;h1&gt;Odpoczynek był długi i relaksujący&lt;/h1&gt;
+&lt;h3&gt;Wszystkie sloty zaklęć zostały zresetowane&lt;/h3&gt;
+&lt;h3&gt;Obecne HP: [r: HP = MaxHP]&lt;/h3&gt;
+[h: bar.Health = HP / MaxHP]
+[h: setBarVisible(&quot;Health&quot;, 0)]
+[h: setState(&quot;Unconscious&quot;, 0)]
+[h: Unconscious=0]
+[h: HitDieRemaining=min(HitDieRemaining+ceil(HitDieTotal/2),HitDieTotal)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>LongRest</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>7273115f-c886-4fd1-9a03-73cb0697b2c8</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>38</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: index = getStrProp(macro.args, &quot;index&quot;)]
+[h: name = getStrProp(macro.args, &quot;name&quot;)]
+[h: tier = getStrProp(macro.args, &quot;tier&quot;)]
+[h: castTime = getStrProp(macro.args, &quot;castTime&quot;)]
+[h: range = getStrProp(macro.args, &quot;range&quot;)]
+[h: components = getStrProp(macro.args, &quot;components&quot;)]
+[h: duration = getStrProp(macro.args, &quot;duration&quot;)]
+[h: AttackSave = getStrProp(macro.args, &quot;AttackSave&quot;)]
+[h: SaveThrow = getStrProp(macro.args, &quot;SaveThrow&quot;)]
+[h: Effect = getStrProp(macro.args, &quot;Effect&quot;)]
+[h: input(
+	&quot;name|&quot;+name+&quot;|Name&quot;,
+	&quot;tier|&quot;+tier+&quot;|Spell lvl&quot;,
+	&quot;castTime|&quot;+castTime+&quot;|Cast time&quot;,
+	&quot;range|&quot;+range+&quot;|Range&quot;,
+	&quot;components|&quot;+components+&quot;|Components&quot;,
+	&quot;duration|&quot;+duration+&quot;|Duration&quot;,
+	&quot;SaveThrow|&quot;+SaveThrow+&quot;|SaveThrow&quot;,
+	&quot;AttackSave|None, Attack, Save, Attack + Save|Attack/Save|LIST|SELECT&quot;,
+	&quot;Effect|&quot;+Effect+&quot;|Effect&quot;
+)]
+[h: newSpell = json.set(&quot;&quot;, &quot;name&quot;, name, &quot;tier&quot;, tier, &quot;castTime&quot;, castTime, &quot;range&quot;, range, &quot;components&quot;, components, &quot;duration&quot;, duration, &quot;SaveThrow&quot;, SaveThrow, &quot;Attack/Save&quot;, AttackSave, &quot;Effect&quot;, Effect)]
+[h: SpellList = json.set(SpellList, index, newSpell)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>EditSpell</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>ee9700ba-e023-4df7-9901-b1cb93da5a4d</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>39</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+	&quot;lvl|0|Poziom&quot;,
+	&quot;max|0|Ilość slotów&quot;
+)]
+[h: newSlot = json.set(&quot;&quot;, &quot;lvl&quot;, lvl, &quot;max&quot;, max, &quot;current&quot;, max)]
+[h: SpellSlots = json.append(SpellSlots, newSlot)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>AddSpellSlotLvl</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>18236e18-a174-4ca8-817a-b33ed6ecfaac</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>40</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: playClip(&quot;http://185.70.197.39/homm3_sounds/Good luck.WAV&quot;, 1, 0.1)]</command>
+    <label>luck</label>
+    <group>Sounds</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>8242bafd-6cc3-4c61-9136-f8bd3644e6f4</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>41</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: playClip(&quot;http://185.70.197.39/homm3_sounds/New week.WAV&quot;, 1, 0.1)]</command>
+    <label>new_week</label>
+    <group>Sounds</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>4e1b969d-c309-40ad-b0ff-f2d05b2c420d</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>42</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: playClip(&quot;http://185.70.197.39/homm3_sounds/Badluck.WAV&quot;, 1, 0.1)]</command>
+    <label>misfrotune</label>
+    <group>Sounds</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>0c22b545-0a30-4477-9b6f-05110d8d4ad3</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>43</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[r: time = macro.args]
+[r,overlay(&quot;Time&quot;): { 
+
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;testy2_css@Lib:papaj&quot;&gt;
+
+[r,if(time != &quot;21:37&quot;),code:{
+	&lt;h1&gt;Godzina: [r: time]&lt;/h1&gt;
+};
+{
+	&lt;h1 class=&quot;rzulta&quot;&gt;Godzina: [r: time]&lt;/h1&gt;
+	[H: audioByte = macroLinkText(&quot;niewiem@Lib:papaj&quot;)]
+	[H: execLink(audioByte,0,&quot;all&quot;)]
+}]
+&lt;/script&gt;}]</command>
+    <label>timeOverlay</label>
+    <group>BossHP</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>cab27a19-c78d-4916-89fb-569b458d569c</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>44</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h:&apos;&lt;!-- ------------------- execAllPlayers (macro name, arguments, players, output to) ----------------------------------------------------- --&gt;&apos;]
+&lt;!-- This macro executes the macro on ALL SELECTED clients. Feed it macro@lib:token, args (json array) --&gt;
+&lt;!-- And optional third argument is allowed where you give a list of clients where this macro should be executed --&gt;
+[h: mac = getStrProp(macro.args, &quot;macroName&quot;)]
+[h: time = getStrProp(macro.args, &quot;time&quot;)]
+
+[h: userList = getAllPlayerNames()]
+
+[h: outputList = &quot;none&quot;]
+
+[h: self	= getPlayerName()]
+[h: others	= listDelete(userList, listFind(userList, self))]
+
+[h, if(others != &quot;&quot;):broadcast(macroLink(&quot;&lt;color=&apos;red&apos;&gt;&quot;, mac, outputList, time, &quot;&quot;), others)]
+[h,if(listContains(userList, self)), CODE:{
+	[macro(mac):time]
+}; {}]</command>
+    <label>execAllNoID</label>
+    <group>Helpers</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>d5ab2c3b-ece2-4c0b-9f69-681943bb3abf</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>45</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: playClip(&quot;http://185.70.197.39/nie-wiem.mp3&quot;, 1, 0.1)]</command>
+    <label>niewiem</label>
+    <group>Sounds</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>ae12d04b-36ce-4f32-a509-aa33457d770a</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>46</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: index = getStrProp(macro.args, &quot;index&quot;)]
+[h: type = getStrProp(macro.args, &quot;type&quot;)]
+[h: healing = getStrProp(macro.args, &quot;healing&quot;)]
+[h: value = getStrProp(macro.args, &quot;value&quot;)]
+[h: quantity = getStrProp(macro.args, &quot;quantity&quot;)]
+[h: maxHealing = getStrProp(macro.args, &quot;maxHealing&quot;)]
+[h: input(
+	&quot;isFull|0|Czy Za Fulla?|CHECK&quot;
+)]
+[r,if(quantity &lt;= 0),code:{
+	Nie masz pota
+	[h: abort(0)]
+}]
+[h: newPotion = json.set(&quot;&quot;, &quot;type&quot;, type, &quot;healing&quot;, healing, &quot;value&quot;, value, &quot;quantity&quot;, quantity-1, &quot;maxHealing&quot;, maxHealing)]
+[h: Potions = json.set(Potions, index, newPotion)]
+[r,if(isFull==0),code:{
+	[h: heal = eval(healing)]
+	[r: type] wydojony za [r: heal]. 
+};
+{
+	[h:heal = maxHealing]
+	[r: type] wydojony za [r: heal] na pełnej essie. 
+}]
+[h: HP = HP + heal]
+[h,if(HP &gt; MaxHP): HP = MaxHP]
+[h: bar.Health = HP / MaxHP]
+Masz [r: HP] HP.
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>DojeniePota</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>bf6cb9c3-6f81-4098-ae0c-6fa64dcb8c7c</macroUUID>
+    <saveLocation>Token</saveLocation>
+    <index>47</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: index = getStrProp(macro.args, &quot;index&quot;)]
+[h: type = getStrProp(macro.args, &quot;type&quot;)]
+[h: healing = getStrProp(macro.args, &quot;healing&quot;)]
+[h: value = getStrProp(macro.args, &quot;value&quot;)]
+[h: quantity = getStrProp(macro.args, &quot;quantity&quot;)]
+[h: maxHealing = getStrProp(macro.args, &quot;maxHealing&quot;)]
+[h: input(
+	&quot;addValue|0|Nowe Poty&quot;
+)]
+[h: newQuantity = quantity+addValue]
+Dodano [r: addValue] nowych potów [r: type]. Masz ich teraz [r: newQuantity].
+[h: newPotion = json.set(&quot;&quot;, &quot;type&quot;, type, &quot;healing&quot;, healing, &quot;value&quot;, value, &quot;quantity&quot;, newQuantity, &quot;maxHealing&quot;, maxHealing)]
+[h: Potions = json.set(Potions, index, newPotion)]
+[MACRO(&quot;CharSheet@Lib:papaj&quot;): &quot;&quot;]</command>
+    <label>UzupelnijPota</label>
+    <group>Karta postaci</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>false</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+</list>

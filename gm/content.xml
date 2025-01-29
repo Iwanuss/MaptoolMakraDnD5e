@@ -1,0 +1,901 @@
+<list>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>cbe8637a-bb1c-407e-a967-a756ab28cbd8</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>43</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: diff = diff]
+Zmęczenie - [r: Exhaust = max(Exhaust+diff, 0)]
+[h: setBar(&quot;Exhaustion&quot;, Exhaust/6)]</command>
+    <label>Exhaustion</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>1e58df24-b97e-4685-ac32-74fd50cf5249</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>44</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>Zmęczenie - [r: Exhaust = 0]
+[h: setBar(&quot;Exhaustion&quot;, Exhaust/6)]</command>
+    <label>Exhaustion 0</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>cf7be5dc-5f7f-4e83-824e-a89f69d0b32f</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>45</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: HP = MaxHP]
+[h: bar.Health = HP / MaxHP]
+[h: setBarVisible(&quot;Health&quot;, 0)]
+[h: setState(&quot;Unconscious&quot;, 0)]
+[h: Unconscious=0]</command>
+    <label>Full HP</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>2c307323-4254-472b-b53c-2140ac5dc16d</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>46</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: mod = mod]
+[h,if(TmpHP &gt; 0 &amp;&amp; mod &gt; 0),code:{
+	[TmpHP = TmpHP - mod]
+	[h: bar.TmpHealth = TmpHP / MaxHP]
+	[mod = 0]
+	[h,if(TmpHP &lt; 0), code:{
+		[mod = -TmpHP]
+		[TmpHP = 0]
+	}]
+}]
+[h: HP = HP - mod]
+[h,if(HP &gt; MaxHP): HP = MaxHP]
+[h: bar.Health = HP / MaxHP]
+[h,if(HP &lt; 0),code:{
+	[HP = 0]
+	[h,if(isPC()),code:{
+	[H: audioByte = macroLinkText(&quot;play@Lib:papaj&quot;)]
+	[H: execLink(audioByte,0,&quot;all&quot;)]
+	[h: setState(&quot;Unconscious&quot;, 1)]
+	[h: Unconscious=1]
+}]	
+}]
+</command>
+    <label>HP</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>241de5a9-0209-4785-ab86-cbb702bc4367</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>47</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: mod = mod]
+[h,if(TmpHP &gt; 0 &amp;&amp; mod &gt; 0),code:{
+	[TmpHP = TmpHP - mod]
+	[h: bar.TmpHealth = TmpHP / MaxHP]
+	[mod = 0]
+	[h,if(TmpHP &lt; 0), code:{
+		[mod = -TmpHP]
+		[TmpHP = 0]
+	}]
+}]
+[h: DmgMod = min(mod, HP)]
+[h: HP = HP - mod]
+[h,if(HP &gt; MaxHP): HP = MaxHP]
+[h: bar.Health = HP / MaxHP]
+[h,if(HP &lt; 0): HP = 0]
+[h: id = currentToken()]
+[MACRO(&quot;execAll@Lib:papaj&quot;): &quot;macroName=testFrame@Lib:papaj; tokenName=&quot;+id]</command>
+    <label>HP (boss)</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>b76b508e-3a7c-4f31-a21f-82374c84a79e</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>48</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: addToInitiative(0, Initiative+1d20)]
+[h: sortInitiative()]</command>
+    <label>Inicjatywa</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>c9129d75-ce29-4afc-a093-5d5ad747de51</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>49</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: addToInitiative(1, DexterityMod+1d20)]
+[h: sortInitiative()]</command>
+    <label>Inicjatywa - boss</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>f2a8e759-9135-4051-8fbe-cf50597b0e7b</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>50</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: addToInitiative(0, Initiative+1d20)]
+[h: sortInitiative()]
+&lt;!--[H: audioByte = macroLinkText(&quot;o-bogowie-walka@Lib:papaj&quot;)] 
+[H: execLink(audioByte,0,&quot;all&quot;)] --&gt;</command>
+    <label>Inicjatywa - sound</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>8b8dbe8b-73c5-4fbe-b13f-03818c900911</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>51</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: diff = diff]
+Legendarne Odporności - [r: LegRes = max(LegRes-diff, 0)]
+[h: setBar(&quot;LegResBar&quot;, LegRes/MaxLegRes)]</command>
+    <label>LegRes</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>09ba4901-3c30-4387-8063-bae2e75527e5</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>52</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: input(
+&quot;Martwy|&quot;+Martwy+&quot;|Martwy|CHECK&quot;,
+&quot;Blinded|&quot;+Blinded+&quot;|Blinded|CHECK&quot;,
+&quot;Deafened|&quot;+Deafened+&quot;|Deafened|CHECK&quot;,
+&quot;Frightened|&quot;+Frightened+&quot;|Frightened|CHECK&quot;,
+&quot;Grappled|&quot;+Grappled+&quot;|Grappled|CHECK&quot;,
+&quot;Incapacitated|&quot;+Incapacitated+&quot;|Incapacitated|CHECK&quot;,
+&quot;Invisible|&quot;+Invisible+&quot;|Invisible|CHECK&quot;,
+&quot;Paralyzed|&quot;+Paralyzed+&quot;|Paralyzed|CHECK&quot;,
+&quot;Petrified|&quot;+Petrified+&quot;|Petrified|CHECK&quot;,
+&quot;Poisoned|&quot;+Poisoned+&quot;|Poisoned|CHECK&quot;,
+&quot;Prone|&quot;+Prone+&quot;|Prone|CHECK&quot;,
+&quot;Restrained|&quot;+Restrained+&quot;|Restrained|CHECK&quot;,
+&quot;Stunned|&quot;+Stunned+&quot;|Stunned|CHECK&quot;,
+&quot;Unconscious|&quot;+Unconscious+&quot;|Unconscious|CHECK&quot;,
+&quot;Inspiracja|&quot;+Inspiracja+&quot;|Inspiracja|CHECK&quot;,
+&quot;Unik|&quot;+Unik+&quot;|Unik|CHECK&quot;,
+&quot;DM_Inspired|&quot;+DM_Inspired+&quot;|DM_Inspired|CHECK&quot;,
+&quot;Charmed|&quot;+Charmed+&quot;|Charmed|CHECK&quot;,
+&quot;Koncentracja|&quot;+Koncentracja+&quot;|Koncentracja|CHECK&quot;,
+&quot;Burn|&quot;+Burn+&quot;|Burn|CHECK&quot;,
+&quot;Szkalowanie|&quot;+Szkalowanie+&quot;|Szkalowanie|CHECK&quot;
+)]
+
+[h: setState(&quot;Martwy&quot;, Martwy)]
+[h: setState(&quot;Blinded&quot;, Blinded)]
+[h: setState(&quot;Deafened&quot;, Deafened)]
+[h: setState(&quot;Frightened&quot;, Frightened)]
+[h: setState(&quot;Grappled&quot;, Grappled)]
+[h: setState(&quot;Incapacitated&quot;, Incapacitated)]
+[h: setState(&quot;Invisible&quot;, Invisible)]
+[h: setState(&quot;Paralyzed&quot;, Paralyzed)]
+[h: setState(&quot;Petrified&quot;, Petrified)]
+[h: setState(&quot;Poisoned&quot;, Poisoned)]
+[h: setState(&quot;Prone&quot;, Prone)]
+[h: setState(&quot;Restrained&quot;, Restrained)]
+[h: setState(&quot;Stunned&quot;, Stunned)]
+[h: setState(&quot;Unconscious&quot;, Unconscious)]
+[h: setState(&quot;Inspiracja&quot;, Inspiracja)]
+[h: setState(&quot;Unik&quot;, Unik)]
+[h: setState(&quot;DM_Inspired&quot;, DM_Inspired)]
+[h: setState(&quot;Charmed&quot;, Charmed)]
+[h: setState(&quot;Koncentracja&quot;, Koncentracja)]
+[h: setState(&quot;Burn&quot;, Burn)]
+[h: setState(&quot;Szkalowanie&quot;, Szkalowanie)]</command>
+    <label>Stany</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>dd20bc09-f34c-40e4-90ab-3c7c5cbd24d4</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>53</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: mod = mod]
+[h: TmpHP = TmpHP - mod]
+[h,if(TmpHP &gt; MaxHP): TmpHP = MaxHP]
+[h: bar.TmpHealth = TmpHP / MaxHP]
+[h,if(TmpHP &lt; 0),code:{
+	[TmpHP = 0]
+}]	
+</command>
+    <label>TmpHP</label>
+    <group></group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>58b82256-7b8d-4fc9-9858-d6b7b34a46f8</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>54</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[H: input(
+	&quot;DRS| 0,1,2,3 |DRS|Radio|SELECT=&quot;+DRS,
+	&quot;DRF| 0,1,2,3 |DRF|Radio|SELECT=&quot;+DRF
+)]
+
+
+
+
+[h,if(DRS==0),code:{
+	[setState(&quot;DRS-1&quot;,0)]
+	[setState(&quot;DRS-2&quot;,0)]
+}]
+[h,if(DRS==1),code:{
+	[setState(&quot;DRS-1&quot;,1)]
+	[setState(&quot;DRS-2&quot;,0)]
+}]
+[h,if(DRS==2),code:{
+	[setState(&quot;DRS-1&quot;,0)]
+	[setState(&quot;DRS-2&quot;,1)]
+}]
+
+
+
+
+[h,if(DRF==0),code:{
+	[setState(&quot;DRF-1&quot;,0)]
+	[setState(&quot;DRF-2&quot;,0)]
+}]
+[h,if(DRF==1),code:{
+	[setState(&quot;DRF-1&quot;,1)]
+	[setState(&quot;DRF-2&quot;,0)]
+}]
+[h,if(DRF==2),code:{
+	[setState(&quot;DRF-1&quot;,0)]
+	[setState(&quot;DRF-2&quot;,1)]
+}]</command>
+    <label>DR - status</label>
+    <group>DR</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>cdeaf4e9-572b-49ea-804c-0b288b226142</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>55</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[g,r: bagno = &quot;X: &quot;+1d12*5+&quot; Y: &quot;+1d12*5+
+ +&quot; Size &quot;+1d3*5+&quot;X&quot;+1d3*5]
+
+[h: oslona = 1d10]
+ &lt;br /&gt;
+[r,switch(oslona):
+	case 0: &quot;None&quot;;
+	case 1: &quot;Lekka&quot;;
+	case 2:  &quot;Srednia&quot;;
+	case 3: &quot;Full&quot;;
+	case 4:  &quot;Pagorek&quot;;
+	case 5: &quot;Ciezki teren&quot;;
+	case 6: &quot;Podwyzszenie&quot;;
+	case 7: &quot;Krzaki&quot;;
+	case 8: &quot;Dziura&quot;;
+	case 9: &quot;Woda&quot;;
+	case 10: &quot;Lawa / Ogień&quot;
+	default: &quot;None&quot;
+]</command>
+    <label>Cover (60)</label>
+    <group>Generators</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>d21aedf1-3d9a-4f75-bc16-d307c97a4f7a</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>65</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[g,r: bagno = &quot;X: &quot;+1d14*5+&quot; Y: &quot;+1d14*5+
+ +&quot; Size &quot;+1d3*5+&quot;X&quot;+1d3*5]
+
+[h: oslona = 1d10]
+ &lt;br /&gt;
+[r,switch(oslona):
+	case 0: &quot;None&quot;;
+	case 1: &quot;Lekka&quot;;
+	case 2:  &quot;Srednia&quot;;
+	case 3: &quot;Full&quot;;
+	case 4:  &quot;Pagorek&quot;;
+	case 5: &quot;Ciezki teren&quot;;
+	case 6: &quot;Podwyzszenie&quot;;
+	case 7: &quot;Krzaki&quot;;
+	case 8: &quot;Dziura&quot;;
+	case 9: &quot;Woda&quot;;
+	case 10: &quot;Lawa / Ogień&quot;
+	default: &quot;None&quot;
+]</command>
+    <label>Cover (70)</label>
+    <group>Generators</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>7fb0e09a-5308-4737-81f4-6ecb267a5eca</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>68</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[g,r: bagno = &quot;X: &quot;+1d16*5+&quot; Y: &quot;+1d16*5+
+ +&quot; Size &quot;+1d3*5+&quot;X&quot;+1d3*5]
+
+[h: oslona = 1d10]
+ &lt;br /&gt;
+[r,switch(oslona):
+	case 0: &quot;None&quot;;
+	case 1: &quot;Lekka&quot;;
+	case 2:  &quot;Srednia&quot;;
+	case 3: &quot;Full&quot;;
+	case 4:  &quot;Pagorek&quot;;
+	case 5: &quot;Ciezki teren&quot;;
+	case 6: &quot;Podwyzszenie&quot;;
+	case 7: &quot;Krzaki&quot;;
+	case 8: &quot;Dziura&quot;;
+	case 9: &quot;Woda&quot;;
+	case 10: &quot;Lawa / Ogień&quot;
+	default: &quot;None&quot;
+]</command>
+    <label>Cover (80)</label>
+    <group>Generators</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>fb147302-0fb7-464c-8c7b-3454a8214b56</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>57</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[H, macro(&quot;Animate_victory@lib:papaj&quot;):&quot;&quot;]</command>
+    <label>Boss defeated</label>
+    <group>test</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>c5e5ee51-c9f7-43c0-9586-1d57b560cdfa</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>58</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: id = currentToken()]
+[MACRO(&quot;execAll@Lib:papaj&quot;): &quot;macroName=testFrame@Lib:papaj; tokenName=&quot;+id]</command>
+    <label>Boss HP</label>
+    <group>test</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>de38a20f-dfd1-4d2f-8f5d-d55f15506296</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>59</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: id = currentToken()]
+[MACRO(&quot;execAll@Lib:papaj&quot;): &quot;macroName=closeFrame@Lib:papaj; tokenName=&quot;+id]</command>
+    <label>Boss HP (close)</label>
+    <group>test</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>c4fe4d9c-4ce3-49ac-8196-f8a0df2ee20f</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>60</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[H, macro(&quot;Animate_dead@lib:papaj&quot;):&quot;&quot;]</command>
+    <label>Dead</label>
+    <group>test</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>cc95fbfb-49f1-4523-ace6-59e8c5edd4d0</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>61</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: id = currentToken()]
+[MACRO(&quot;execAll@Lib:papaj&quot;): &quot;macroName=closeDead@Lib:papaj; tokenName=&quot;+id]</command>
+    <label>Dead (close)</label>
+    <group>test</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip>d</toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>f3ecdfbe-c246-4751-bcc8-0c6c452f2800</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>62</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[H: audioByte = macroLinkText(&quot;new_week@Lib:papaj&quot;)]
+[H: execLink(audioByte,0,&quot;all&quot;)]</command>
+    <label>New week</label>
+    <group>test</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>58b45110-d154-49e1-9c85-f4e8b2dee2dc</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>67</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: mod = mod]
+[h: MaxHP = mod]
+[h: HP = mod]</command>
+    <label>setHP</label>
+    <group>test</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>d548cd7c-697f-413d-b4f6-6355f4497f7d</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>66</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[MACRO(&quot;execAllNoID@Lib:papaj&quot;): &quot;macroName=timeOverlay@Lib:papaj; time=&quot;+time]</command>
+    <label>Time</label>
+    <group>test</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>false</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>38dbe117-1f8d-4236-bd9c-30ec9c280768</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>63</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[h: id = currentToken()]
+[MACRO(&quot;execAll@Lib:papaj&quot;): &quot;macroName=closeVictory@Lib:papaj; tokenName=&quot;+id]</command>
+    <label>Victory (close)</label>
+    <group>test</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+  <net.rptools.maptool.model.MacroButtonProperties>
+    <macroUUID>5de645f9-dc4c-4bb1-9eff-cb23d8b8e4c3</macroUUID>
+    <saveLocation>GmPanel</saveLocation>
+    <index>64</index>
+    <colorKey>default</colorKey>
+    <hotKey>None</hotKey>
+    <command>[H, macro(&quot;Animate_victory_achieved@lib:papaj&quot;):&quot;&quot;]</command>
+    <label>Victory achieved</label>
+    <group>test</group>
+    <sortby></sortby>
+    <autoExecute>true</autoExecute>
+    <includeLabel>false</includeLabel>
+    <applyToTokens>true</applyToTokens>
+    <fontColorKey>default</fontColorKey>
+    <fontSize>1.00em</fontSize>
+    <minWidth></minWidth>
+    <maxWidth></maxWidth>
+    <allowPlayerEdits>true</allowPlayerEdits>
+    <toolTip></toolTip>
+    <displayHotKey>true</displayHotKey>
+    <commonMacro>false</commonMacro>
+    <compareGroup>true</compareGroup>
+    <compareSortPrefix>true</compareSortPrefix>
+    <compareCommand>true</compareCommand>
+    <compareIncludeLabel>true</compareIncludeLabel>
+    <compareAutoExecute>true</compareAutoExecute>
+    <compareApplyToSelectedTokens>true</compareApplyToSelectedTokens>
+  </net.rptools.maptool.model.MacroButtonProperties>
+</list>
